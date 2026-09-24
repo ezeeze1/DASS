@@ -12,8 +12,8 @@ import {
   FileCheck,
   Printer,
 } from 'lucide-react';
-import { SCHOOL_INFO } from '../data/schoolData';
 import { AdmissionFormData } from '../types';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 interface AdmissionModalProps {
   isOpen: boolean;
@@ -21,6 +21,8 @@ interface AdmissionModalProps {
 }
 
 export default function AdmissionModal({ isOpen, onClose }: AdmissionModalProps) {
+  const { content } = useWebsiteContent();
+  const SCHOOL_INFO = content.schoolInfo;
   const [formData, setFormData] = useState<AdmissionFormData>({
     studentFullName: '',
     dateOfBirth: '',

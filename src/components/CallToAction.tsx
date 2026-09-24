@@ -1,4 +1,5 @@
 import { ArrowRight, Phone, Sparkles } from 'lucide-react';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 interface CallToActionProps {
   onContactClick: () => void;
@@ -9,6 +10,9 @@ export default function CallToAction({
   onContactClick,
   onAdmissionsClick,
 }: CallToActionProps) {
+  const { content } = useWebsiteContent();
+  const { cta, schoolInfo } = content;
+
   return (
     <section className="relative py-20 lg:py-24 bg-navy-950 text-white overflow-hidden">
       {/* Background Graphic Effects */}
@@ -19,17 +23,17 @@ export default function CallToAction({
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-900 border border-amber-500/30 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-6">
           <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-          <span>Excellence · Character · Leadership</span>
+          <span>{cta.badge}</span>
         </div>
 
         <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight uppercase leading-tight">
-          YOUR CHILD'S FUTURE STARTS HERE
+          {cta.title}
         </h2>
 
         <div className="w-20 h-1 bg-amber-500 mx-auto my-5 rounded-full" />
 
         <p className="text-slate-300 text-base sm:text-xl font-normal max-w-2xl mx-auto leading-relaxed">
-          "Discover an environment designed to inspire learning, character and excellence."
+          "{cta.subtitle}"
         </p>
 
         {/* Required Action Buttons */}
@@ -46,13 +50,13 @@ export default function CallToAction({
             onClick={onAdmissionsClick}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 bg-navy-900 hover:bg-navy-850 text-white border border-amber-500/40 hover:border-amber-400 font-bold text-xs uppercase tracking-wider rounded shadow-md active:translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
           >
-            <span>ADMISSION INFORMATION</span>
+            <span>{cta.primaryButtonText || 'ADMISSION INFORMATION'}</span>
             <ArrowRight className="w-4 h-4 text-amber-400" />
           </button>
         </div>
 
         <p className="text-slate-400 text-xs mt-6">
-          Divine Group of Schools · Okene, Kogi State, Nigeria
+          {schoolInfo.name} · {schoolInfo.location}, {schoolInfo.state}, Nigeria
         </p>
       </div>
     </section>

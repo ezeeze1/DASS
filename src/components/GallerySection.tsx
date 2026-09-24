@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { Eye, Images, Filter } from 'lucide-react';
-import { GALLERY_ITEMS } from '../data/schoolData';
 import { GalleryItem } from '../types';
 import ImageWithFallback from './ImageWithFallback';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 interface GallerySectionProps {
   onSelectImage: (image: { title: string; src: string; caption: string }) => void;
 }
 
-type CategoryFilter = 'All' | 'School Life' | 'Academics' | 'Sports' | 'Events' | 'Facilities';
+type CategoryFilter = 'All' | 'School Life' | 'Academics' | 'Sports' | 'Events' | 'Facilities' | string;
 
 export default function GallerySection({ onSelectImage }: GallerySectionProps) {
+  const { content } = useWebsiteContent();
+  const galleryItems = content.gallery;
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('All');
 
   const categories: CategoryFilter[] = [
@@ -24,8 +26,8 @@ export default function GallerySection({ onSelectImage }: GallerySectionProps) {
 
   const filteredItems =
     activeCategory === 'All'
-      ? GALLERY_ITEMS
-      : GALLERY_ITEMS.filter((item) => item.category === activeCategory);
+      ? galleryItems
+      : galleryItems.filter((item) => item.category === activeCategory);
 
   return (
     <section id="gallery" className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200">

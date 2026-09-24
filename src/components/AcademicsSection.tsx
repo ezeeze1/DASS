@@ -8,7 +8,7 @@ import {
   Activity,
   CheckCircle2,
 } from 'lucide-react';
-import { ACADEMIC_SUBJECTS } from '../data/schoolData';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 const iconMap = {
   Calculator,
@@ -21,6 +21,10 @@ const iconMap = {
 };
 
 export default function AcademicsSection() {
+  const { content } = useWebsiteContent();
+  const subjects = content.academicSubjects;
+  const philosophy = content.academicPhilosophy;
+
   return (
     <section id="academics" className="py-20 lg:py-28 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,7 +44,7 @@ export default function AcademicsSection() {
 
         {/* Academic Departments Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {ACADEMIC_SUBJECTS.map((subject) => {
+          {subjects.map((subject) => {
             const Icon = iconMap[subject.iconName as keyof typeof iconMap] || BookOpen;
 
             return (
@@ -78,17 +82,17 @@ export default function AcademicsSection() {
           <div className="p-6 rounded-2xl bg-gradient-to-br from-amber-50 to-amber-100/90 border-2 border-amber-300 text-black shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
             <div>
               <span className="text-xs font-bold text-black uppercase tracking-wider">
-                Teaching Philosophy
+                {philosophy.badge}
               </span>
               <h3 className="font-serif text-lg sm:text-xl font-bold text-black tracking-tight mt-1">
-                Holistic Pedagogy
+                {philosophy.title}
               </h3>
               <p className="text-black text-xs sm:text-sm mt-3 leading-relaxed">
-                We cultivate disciplined study habits, verbal eloquence, analytical thinking, and ethical leadership in every subject area.
+                {philosophy.description}
               </p>
             </div>
             <div className="mt-6 pt-3 border-t border-amber-300/80 text-xs text-black font-semibold">
-              Divine Group of Schools · Okene
+              {philosophy.footnote || `${content.schoolInfo.name} · Okene`}
             </div>
           </div>
         </div>

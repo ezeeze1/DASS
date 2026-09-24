@@ -9,9 +9,11 @@ import {
   AlertCircle,
   Building,
 } from 'lucide-react';
-import { SCHOOL_INFO } from '../data/schoolData';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 export default function ContactSection() {
+  const { content } = useWebsiteContent();
+  const SCHOOL_INFO = content.schoolInfo;
   const [formData, setFormData] = useState({
     name: '',
     email: '',

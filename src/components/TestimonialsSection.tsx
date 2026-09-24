@@ -1,7 +1,10 @@
-import { Quote, MessageSquareQuote } from 'lucide-react';
-import { TESTIMONIALS_DATA } from '../data/schoolData';
+import { Quote } from 'lucide-react';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 export default function TestimonialsSection() {
+  const { content } = useWebsiteContent();
+  const testimonials = content.testimonials;
+
   return (
     <section id="testimonials" className="py-20 lg:py-28 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,15 +18,15 @@ export default function TestimonialsSection() {
           </h2>
           <div className="w-20 h-1 bg-amber-500 mx-auto mt-4 rounded-full" />
           <p className="text-slate-600 text-base sm:text-lg mt-4 leading-relaxed font-normal">
-            Reflecting on the supportive academic environment, character discipline, and caring teacher mentorship at Divine Group of Schools.
+            Reflecting on the supportive academic environment, character discipline, and caring teacher mentorship at {content.schoolInfo.name}.
           </p>
         </div>
 
         {/* Testimonials Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {TESTIMONIALS_DATA.map((t) => (
+          {testimonials.map((t, idx) => (
             <div
-              key={t.id}
+              key={t.id || idx}
               className="p-8 rounded-2xl bg-slate-50 border border-slate-200/90 hover:border-amber-400 hover:bg-white shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
             >
               <div>
@@ -53,7 +56,7 @@ export default function TestimonialsSection() {
 
         {/* Editorial Notice Note */}
         <div className="mt-10 text-center text-xs text-slate-500 max-w-lg mx-auto">
-          Sample testimonials representing parent perspectives on school environment and character development.
+          Testimonials representing parent perspectives on school environment and character development.
         </div>
       </div>
     </section>

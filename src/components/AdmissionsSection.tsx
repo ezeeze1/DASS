@@ -1,5 +1,5 @@
 import { ArrowRight, PhoneCall, FileText, CheckCircle2, Calendar, ClipboardCheck } from 'lucide-react';
-import { ADMISSION_STEPS, SCHOOL_INFO } from '../data/schoolData';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 interface AdmissionsSectionProps {
   onOpenApplyModal: () => void;
@@ -10,6 +10,9 @@ export default function AdmissionsSection({
   onOpenApplyModal,
   onContactClick,
 }: AdmissionsSectionProps) {
+  const { content } = useWebsiteContent();
+  const { admissions, schoolInfo } = content;
+
   return (
     <section id="admissions" className="py-20 lg:py-28 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,21 +24,21 @@ export default function AdmissionsSection({
           <div className="relative z-10 max-w-3xl">
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-navy-950 text-white border border-navy-700 shadow-md mb-4">
               <Calendar className="w-3.5 h-3.5 text-white" />
-              <span className="text-white">Enrollment Open · Okene, Kogi State</span>
+              <span className="text-white">{admissions.badge}</span>
             </span>
 
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black tracking-tight uppercase leading-tight">
-              START YOUR CHILD'S JOURNEY WITH US
+              {admissions.headline}
             </h2>
 
             <div className="w-20 h-1 bg-amber-500 my-5 rounded-full" />
 
             <p className="text-black text-base sm:text-xl font-medium leading-relaxed">
-              "Give your child an environment where learning, character and personal development can flourish."
+              "{admissions.quote}"
             </p>
 
             <p className="text-black text-sm sm:text-base mt-4 max-w-2xl leading-relaxed">
-              We welcome prospective families to experience our campus, consult with our educational coordinators, and register their wards for Creche, Primary, and Secondary sections.
+              {admissions.description}
             </p>
 
             {/* Required Action Buttons */}
@@ -74,7 +77,7 @@ export default function AdmissionsSection({
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {ADMISSION_STEPS.map((step) => (
+            {admissions.steps.map((step) => (
               <div
                 key={step.step}
                 className="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-amber-400 hover:bg-white shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between"
@@ -108,17 +111,17 @@ export default function AdmissionsSection({
               <div>
                 <h4 className="text-sm font-bold text-navy-950">Have Admissions Questions?</h4>
                 <p className="text-xs text-slate-700 mt-0.5">
-                  Our admissions office in Okene is open Monday through Friday, 7:30 AM – 4:00 PM.
+                  Our admissions office in Okene is open {schoolInfo.openingHours}.
                 </p>
               </div>
             </div>
 
             <div className="flex items-center gap-3 w-full md:w-auto">
               <a
-                href={`tel:${SCHOOL_INFO.phones[0].replace(/[^0-9+]/g, '')}`}
+                href={`tel:${(schoolInfo.phones[0] || '').replace(/[^0-9+]/g, '')}`}
                 className="w-full md:w-auto text-center px-4 py-2.5 bg-navy-900 hover:bg-navy-800 text-white text-xs font-bold uppercase tracking-wider rounded transition-colors"
               >
-                Call: {SCHOOL_INFO.phones[0]}
+                Call: {schoolInfo.phones[0]}
               </a>
             </div>
           </div>

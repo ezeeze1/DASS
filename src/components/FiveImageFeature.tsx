@@ -9,9 +9,9 @@ import {
   Camera,
   Layers,
 } from 'lucide-react';
-import { HOMEPAGE_FIVE_IMAGES } from '../data/schoolData';
 import { SevenLifeImage } from '../types';
 import ImageWithFallback from './ImageWithFallback';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 interface FiveImageFeatureProps {
   onSelectImage: (image: { title: string; src: string; caption: string }) => void;
@@ -20,8 +20,9 @@ interface FiveImageFeatureProps {
 const AUTOPLAY_DURATION = 5000; // 5 seconds per image
 
 export default function FiveImageFeature({ onSelectImage }: FiveImageFeatureProps) {
-  const images = HOMEPAGE_FIVE_IMAGES;
-  const total = images.length; // Exactly 5 images
+  const { content } = useWebsiteContent();
+  const images = content.fiveImages;
+  const total = images.length; // 5 images
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0);

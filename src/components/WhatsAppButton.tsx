@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { MessageCircle, X } from 'lucide-react';
-import { SCHOOL_INFO } from '../data/schoolData';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 export default function WhatsAppButton() {
+  const { content } = useWebsiteContent();
   const [showTooltip, setShowTooltip] = useState(true);
 
-  // Clean phone number format for WhatsApp link: 2348038924110
-  const whatsappNumber = '2348038924110';
+  // Clean phone number format for WhatsApp link
+  const rawNumber = content.schoolInfo.whatsappNumber || content.schoolInfo.phones[0] || '2348038924110';
+  const whatsappNumber = rawNumber.replace(/[^0-9]/g, '');
   const message = encodeURIComponent(
-    'Hello Divine Group of Schools, I would like to inquire about admissions, enrollment, and school programs.'
+    `Hello ${content.schoolInfo.name}, I would like to inquire about admissions, enrollment, and school programs.`
   );
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 

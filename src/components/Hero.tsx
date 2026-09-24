@@ -11,7 +11,7 @@ import {
   Shield,
   Camera,
 } from 'lucide-react';
-import { SCHOOL_INFO, HOMEPAGE_FIVE_IMAGES } from '../data/schoolData';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 interface HeroProps {
   onExploreClick: () => void;
@@ -21,10 +21,12 @@ interface HeroProps {
 const HERO_AUTOPLAY_DELAY = 5000; // 5 seconds per transitional image
 
 export default function Hero({ onExploreClick, onAdmissionsClick }: HeroProps) {
+  const { content } = useWebsiteContent();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const images = HOMEPAGE_FIVE_IMAGES;
-  const totalSlides = images.length; // Exactly 5 images
+  const images = content.fiveImages;
+  const schoolInfo = content.schoolInfo;
+  const totalSlides = images.length;
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
@@ -119,17 +121,17 @@ export default function Hero({ onExploreClick, onAdmissionsClick }: HeroProps) {
 
         {/* Hero Title */}
         <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight uppercase leading-tight sm:leading-tight max-w-5xl">
-          WELCOME TO <span className="text-amber-400 underline decoration-amber-500/50 decoration-4 underline-offset-8">DIVINE GROUP OF SCHOOLS</span>
+          WELCOME TO <span className="text-amber-400 underline decoration-amber-500/50 decoration-4 underline-offset-8">{schoolInfo.name}</span>
         </h1>
 
         {/* Tagline / Subtitle */}
         <p className="font-serif italic text-lg sm:text-2xl text-amber-200/90 mt-4 sm:mt-5 max-w-3xl">
-          "{SCHOOL_INFO.tagline}"
+          "{schoolInfo.tagline}"
         </p>
 
         {/* Supporting text */}
         <p className="text-slate-300 text-base sm:text-lg lg:text-xl font-normal max-w-3xl mt-6 leading-relaxed text-balance">
-          {SCHOOL_INFO.heroSupportingText}
+          {schoolInfo.heroSupportingText}
         </p>
 
         {/* Action Buttons */}

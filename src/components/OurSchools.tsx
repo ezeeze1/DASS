@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { ArrowRight, CheckCircle2, BookOpen, X, Sparkles } from 'lucide-react';
-import { SCHOOL_LEVELS } from '../data/schoolData';
 import { SchoolLevel } from '../types';
 import ImageWithFallback from './ImageWithFallback';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 interface OurSchoolsProps {
   onApplyForAdmission: () => void;
 }
 
 export default function OurSchools({ onApplyForAdmission }: OurSchoolsProps) {
+  const { content } = useWebsiteContent();
+  const schoolLevels = content.schoolLevels;
   const [selectedLevel, setSelectedLevel] = useState<SchoolLevel | null>(null);
 
   return (
@@ -30,7 +32,7 @@ export default function OurSchools({ onApplyForAdmission }: OurSchoolsProps) {
 
         {/* 3 School Level Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {SCHOOL_LEVELS.map((level) => (
+          {schoolLevels.map((level) => (
             <div
               key={level.id}
               className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-200 transition-all duration-300 flex flex-col justify-between group"

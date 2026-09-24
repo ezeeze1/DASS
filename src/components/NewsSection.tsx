@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Calendar, ArrowRight, Bell, X, CheckCircle2 } from 'lucide-react';
-import { NEWS_ANNOUNCEMENTS } from '../data/schoolData';
 import { NewsItem } from '../types';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 export default function NewsSection() {
+  const { content } = useWebsiteContent();
+  const newsList = content.news;
   const [activeNews, setActiveNews] = useState<NewsItem | null>(null);
 
   return (
@@ -25,7 +27,7 @@ export default function NewsSection() {
 
         {/* 3 News Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {NEWS_ANNOUNCEMENTS.map((news) => (
+          {newsList.map((news) => (
             <div
               key={news.id}
               className="bg-white rounded-2xl p-7 border border-slate-200/90 hover:border-amber-400 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"

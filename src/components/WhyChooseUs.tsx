@@ -6,7 +6,7 @@ import {
   ShieldCheck,
   Award,
 } from 'lucide-react';
-import { WHY_CHOOSE_US_CARDS } from '../data/schoolData';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 const iconMap = {
   GraduationCap,
@@ -18,6 +18,9 @@ const iconMap = {
 };
 
 export default function WhyChooseUs() {
+  const { content } = useWebsiteContent();
+  const cards = content.whyChooseUs;
+
   return (
     <section id="why-choose-us" className="py-20 lg:py-28 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,7 +30,7 @@ export default function WhyChooseUs() {
             Institutional Values
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight mt-3">
-            Why Choose Divine Group of Schools?
+            Why Choose {content.schoolInfo.name}?
           </h2>
           <div className="w-20 h-1 bg-amber-500 mx-auto mt-4 rounded-full" />
           <p className="text-slate-600 text-base sm:text-lg mt-4 leading-relaxed font-normal">
@@ -37,12 +40,12 @@ export default function WhyChooseUs() {
 
         {/* 6 Elegant Feature Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {WHY_CHOOSE_US_CARDS.map((card, idx) => {
+          {cards.map((card, idx) => {
             const Icon = iconMap[card.iconName as keyof typeof iconMap] || Award;
 
             return (
               <div
-                key={card.id}
+                key={card.id || idx}
                 className="group relative p-8 rounded-2xl bg-slate-50 hover:bg-white border border-slate-200/90 hover:border-amber-400/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
               >
                 {/* Subtle top indicator bar */}
@@ -64,7 +67,7 @@ export default function WhyChooseUs() {
                     {card.description}
                   </p>
 
-                  {card.id === 'experienced-teachers' && (
+                  {(card.id === 'experienced-teachers' || card.title.toLowerCase().includes('teacher')) && (
                     <div className="mt-4 rounded-xl overflow-hidden border border-slate-200 h-28 relative">
                       <img
                         src="https://i.ibb.co/Q3TZZf8H/IMG-8055.jpg"
@@ -83,9 +86,9 @@ export default function WhyChooseUs() {
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-slate-200/60 flex items-center justify-between text-xs text-slate-600 font-medium">
-                  <span>Pillar {idx + 1} of 6</span>
-                  <span className="text-amber-600 group-hover:translate-x-1 transition-transform duration-200">
-                    Excellence & Values →
+                  <span>Pillar 0{idx + 1}</span>
+                  <span className="text-amber-600 font-bold uppercase tracking-wider text-[11px]">
+                    Divine Advantage
                   </span>
                 </div>
               </div>

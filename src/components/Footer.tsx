@@ -1,12 +1,14 @@
 import { MapPin, Phone, Mail, Clock, ArrowUp } from 'lucide-react';
 import Logo from './Logo';
-import { SCHOOL_INFO } from '../data/schoolData';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 interface FooterProps {
   onNavClick: (href: string) => void;
 }
 
 export default function Footer({ onNavClick }: FooterProps) {
+  const { content } = useWebsiteContent();
+  const SCHOOL_INFO = content.schoolInfo;
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

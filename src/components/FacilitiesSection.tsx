@@ -1,12 +1,14 @@
 import { CheckCircle2, Building2 } from 'lucide-react';
-import { FACILITIES_LIST } from '../data/schoolData';
 import ImageWithFallback from './ImageWithFallback';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 interface FacilitiesSectionProps {
   onSelectImage: (image: { title: string; src: string; caption: string }) => void;
 }
 
 export default function FacilitiesSection({ onSelectImage }: FacilitiesSectionProps) {
+  const { content } = useWebsiteContent();
+  const facilitiesList = content.facilities;
   return (
     <section id="facilities" className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,7 +28,7 @@ export default function FacilitiesSection({ onSelectImage }: FacilitiesSectionPr
 
         {/* 6 Facilities Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {FACILITIES_LIST.map((facility) => (
+          {facilitiesList.map((facility) => (
             <div
               key={facility.id}
               className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-200 transition-all duration-300 flex flex-col group"

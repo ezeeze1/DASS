@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock, Menu, X, ArrowRight } from 'lucide-react';
 import Logo from './Logo';
-import { SCHOOL_INFO } from '../data/schoolData';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 interface HeaderProps {
   onOpenApplyModal: () => void;
@@ -9,6 +9,8 @@ interface HeaderProps {
 }
 
 export default function Header({ onOpenApplyModal, activeSection }: HeaderProps) {
+  const { content } = useWebsiteContent();
+  const SCHOOL_INFO = content.schoolInfo;
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

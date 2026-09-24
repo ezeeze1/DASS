@@ -1,11 +1,15 @@
 import { CheckCircle2, ArrowRight, ShieldCheck, Heart, Sparkles, Users } from 'lucide-react';
 import ImageWithFallback from './ImageWithFallback';
+import { useWebsiteContent } from '../context/WebsiteContext';
 
 interface AboutSectionProps {
   onLearnMoreClick: () => void;
 }
 
 export default function AboutSection({ onLearnMoreClick }: AboutSectionProps) {
+  const { content } = useWebsiteContent();
+  const { about } = content;
+
   return (
     <section id="about" className="py-20 lg:py-28 bg-slate-50 border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,9 +22,9 @@ export default function AboutSection({ onLearnMoreClick }: AboutSectionProps) {
               
               <div className="relative overflow-hidden rounded-2xl shadow-xl border border-slate-200/80 bg-navy-950 aspect-[4/5]">
                 <ImageWithFallback
-                  src="https://i.ibb.co/Q3TZZf8H/IMG-8055.jpg"
+                  src={about.teacherImage}
                   alt="Dedicated teachers and students engaged in classroom instruction at Divine Group of Schools"
-                  title="Dedicated Teachers & Guidance"
+                  title={about.teacherBadge}
                   className="w-full h-full object-cover"
                 />
 
@@ -28,7 +32,7 @@ export default function AboutSection({ onLearnMoreClick }: AboutSectionProps) {
                 <div className="absolute top-4 left-4 z-10">
                   <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-navy-900/90 text-amber-300 border border-amber-500/50 backdrop-blur-md shadow-lg">
                     <Users className="w-3.5 h-3.5 text-amber-400" />
-                    <span>Dedicated Teachers</span>
+                    <span>{about.teacherBadge}</span>
                   </span>
                 </div>
               </div>
@@ -40,12 +44,12 @@ export default function AboutSection({ onLearnMoreClick }: AboutSectionProps) {
                     <ShieldCheck className="w-6 h-6" />
                   </div>
                   <div>
-                    <div className="text-xs uppercase tracking-wider text-amber-300 font-bold">Location</div>
-                    <div className="text-sm font-semibold text-white">Okene, Kogi State</div>
+                    <div className="text-xs uppercase tracking-wider text-amber-300 font-bold">{about.locationBadgeTitle}</div>
+                    <div className="text-sm font-semibold text-white">{about.locationBadgeText}</div>
                   </div>
                 </div>
                 <p className="text-[11px] text-slate-300 mt-2 leading-relaxed">
-                  Committed to academic rigor and strong moral foundations.
+                  {about.locationBadgeDesc}
                 </p>
               </div>
             </div>
@@ -55,22 +59,18 @@ export default function AboutSection({ onLearnMoreClick }: AboutSectionProps) {
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-100/70 px-3.5 py-1 rounded-full border border-amber-300/60">
               <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-              <span>Institutional Overview</span>
+              <span>{about.badge}</span>
             </div>
 
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 tracking-tight leading-tight">
-              Welcome to <span className="text-navy-900">Divine Group of Schools</span>
+              {about.title}
             </h2>
 
             <div className="w-20 h-1 bg-amber-500 rounded-full" />
 
             <div className="space-y-4 text-slate-700 text-base sm:text-lg leading-relaxed font-normal">
-              <p>
-                Divine Group of Schools is committed to providing quality education, nurturing character, and preparing students for responsible leadership and future opportunities. Located in the heart of Okene, Kogi State, our school serves as an inspiring learning sanctuary where every student is recognized as a unique individual with unlimited potential.
-              </p>
-              <p>
-                We believe that education extends far beyond textbooks and examinations. Our dedicated educators instill foundational knowledge, independent thinking, ethical decision-making, and strong moral values, ensuring that our learners grow into confident, disciplined, and purposeful contributors to society.
-              </p>
+              <p>{about.paragraph1}</p>
+              <p>{about.paragraph2}</p>
             </div>
 
             {/* Core Institutional Commitments */}
@@ -78,16 +78,16 @@ export default function AboutSection({ onLearnMoreClick }: AboutSectionProps) {
               <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
                 <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-bold text-navy-900">Strong Academic Focus</h4>
-                  <p className="text-xs text-slate-600 mt-0.5">Comprehensive curricula designed for conceptual mastery and analytical depth.</p>
+                  <h4 className="text-sm font-bold text-navy-900">{about.commitment1Title}</h4>
+                  <p className="text-xs text-slate-600 mt-0.5">{about.commitment1Desc}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200 shadow-sm">
                 <Heart className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-bold text-navy-900">Character & Moral Integrity</h4>
-                  <p className="text-xs text-slate-600 mt-0.5">Nurturing respect, honesty, self-discipline, and compassion in every learner.</p>
+                  <h4 className="text-sm font-bold text-navy-900">{about.commitment2Title}</h4>
+                  <p className="text-xs text-slate-600 mt-0.5">{about.commitment2Desc}</p>
                 </div>
               </div>
             </div>
