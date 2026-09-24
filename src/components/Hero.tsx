@@ -65,6 +65,8 @@ export default function Hero({ onExploreClick, onAdmissionsClick }: HeroProps) {
               <img
                 src={img.src}
                 alt={img.alt}
+                referrerPolicy="no-referrer"
+                crossOrigin="anonymous"
                 className={`w-full h-full object-cover object-center transition-transform duration-[6000ms] ease-out ${
                   isActive ? 'scale-105' : 'scale-100'
                 }`}
@@ -74,9 +76,9 @@ export default function Hero({ onExploreClick, onAdmissionsClick }: HeroProps) {
           );
         })}
 
-        {/* Cinematic Dark Gradient Overlays for Maximum Text Readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-900/85 to-navy-950/90" />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-navy-950/60" />
+        {/* Cinematic Dark Gradient Overlays balanced for clarity and readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/80 via-navy-900/65 to-navy-950/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-navy-950/40" />
         {/* Subtle decorative grid overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
       </div>

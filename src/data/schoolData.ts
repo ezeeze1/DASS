@@ -37,9 +37,9 @@ export const HOMEPAGE_FIVE_IMAGES: SevenLifeImage[] = [
     id: 1,
     title: 'School Campus & Administrative Complex',
     category: '1. Campus & Environment',
-    caption: 'Modern multi-storey administrative and academic wings with serene, secure grounds at Former Bamijoko Compound, Inoziomi, Okene.',
-    alt: 'Divine Group of Schools campus building with landscaped grounds',
-    src: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=85',
+    caption: 'Modern academic wings with serene, secure grounds at Former Bamijoko Compound, Inoziomi, Okene.',
+    alt: 'Divine Group of Schools campus building at Former Bamijoko Compound, Inoziomi, Okene',
+    src: 'https://i.ibb.co/Q3VGj1Y2/IMG-7794.jpg',
   },
   {
     id: 2,
@@ -60,10 +60,10 @@ export const HOMEPAGE_FIVE_IMAGES: SevenLifeImage[] = [
   {
     id: 4,
     title: 'Dedicated Teachers & Individual Mentorship',
-    category: '4. Mentorship & Care',
+    category: 'Dedicated Teachers',
     caption: 'Caring educators providing personalized academic attention, moral guidance, and holistic character molding for each child.',
-    alt: 'Supportive teacher mentoring a student warmly during lessons',
-    src: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1600&q=85',
+    alt: 'Dedicated teachers and students at Divine Group of Schools',
+    src: 'https://i.ibb.co/Q3TZZf8H/IMG-8055.jpg',
   },
   {
     id: 5,
@@ -90,9 +90,9 @@ export const SEVEN_LIFE_IMAGES: SevenLifeImage[] = [
     id: 1,
     title: 'School Campus & Administrative Complex',
     category: '1. School Building',
-    caption: 'Modern multi-storey administrative and academic wings with serene, secure grounds.',
-    alt: 'Divine Group of Schools campus building with landscaped grounds',
-    src: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80',
+    caption: 'Administrative and academic wings with serene, secure grounds at Former Bamijoko Compound, Inoziomi, Okene.',
+    alt: 'Divine Group of Schools campus building at Former Bamijoko Compound, Inoziomi, Okene',
+    src: 'https://i.ibb.co/Q3VGj1Y2/IMG-7794.jpg',
   },
   {
     id: 2,
@@ -113,10 +113,10 @@ export const SEVEN_LIFE_IMAGES: SevenLifeImage[] = [
   {
     id: 4,
     title: 'Dedicated Teachers & Individual Mentorship',
-    category: '4. Teachers and Students',
+    category: 'Dedicated Teachers',
     caption: 'Caring educators providing personalized academic attention and ethical moral guidance.',
-    alt: 'Supportive teacher mentoring a student warmly during lessons',
-    src: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
+    alt: 'Dedicated teachers and students at Divine Group of Schools',
+    src: 'https://i.ibb.co/Q3TZZf8H/IMG-8055.jpg',
   },
   {
     id: 5,
@@ -159,8 +159,8 @@ export const WHY_CHOOSE_US_CARDS = [
   },
   {
     id: 'experienced-teachers',
-    title: 'Experienced Teachers',
-    description: 'A supportive teaching environment of qualified educators deeply committed to individual student development.',
+    title: 'Dedicated Teachers',
+    description: 'A supportive teaching environment of passionate, qualified educators deeply committed to individual student development and moral mentorship.',
     iconName: 'Users',
   },
   {
@@ -313,7 +313,7 @@ export const FACILITIES_LIST: Facility[] = [
     id: 'school-environment',
     title: 'School Environment',
     description: 'Perimeter-walled campus with manicured green lawns, 24/7 gated security control, and clean sanitary facilities.',
-    image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80',
+    image: 'https://i.ibb.co/Q3VGj1Y2/IMG-7794.jpg',
     highlights: ['Gated access security', 'Clean treated water systems', 'Landscaped recreational areas', 'First-aid clinic on site'],
   },
 ];
@@ -323,8 +323,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: 'gal-1',
     title: 'Main Academic Campus View',
     category: 'Facilities',
-    image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=900&q=80',
-    caption: 'Front facade of Divine Group of Schools campus in Okene, Kogi State.',
+    image: 'https://i.ibb.co/Q3VGj1Y2/IMG-7794.jpg',
+    caption: 'Front facade of Divine Group of Schools campus at Former Bamijoko Compound, Inoziomi, Okene.',
   },
   {
     id: 'gal-2',
@@ -363,10 +363,10 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   },
   {
     id: 'gal-7',
-    title: 'Teacher Mentorship and Counseling',
+    title: 'Dedicated Teachers & Mentorship',
     category: 'School Life',
-    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=80',
-    caption: 'One-on-one academic consultation and character guidance.',
+    image: 'https://i.ibb.co/Q3TZZf8H/IMG-8055.jpg',
+    caption: 'One-on-one academic consultation and caring moral character guidance.',
   },
   {
     id: 'gal-8',

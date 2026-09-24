@@ -1,4 +1,4 @@
-import { CheckCircle2, ArrowRight, ShieldCheck, Heart, Sparkles } from 'lucide-react';
+import { CheckCircle2, ArrowRight, ShieldCheck, Heart, Sparkles, Users } from 'lucide-react';
 import ImageWithFallback from './ImageWithFallback';
 
 interface AboutSectionProps {
@@ -16,13 +16,21 @@ export default function AboutSection({ onLearnMoreClick }: AboutSectionProps) {
               {/* Decorative background framing */}
               <div className="absolute -top-4 -left-4 w-full h-full rounded-2xl border-2 border-amber-500/30 bg-amber-50/50 -z-10" />
               
-              <div className="overflow-hidden rounded-2xl shadow-xl border border-slate-200/80 bg-navy-950 aspect-[4/5]">
+              <div className="relative overflow-hidden rounded-2xl shadow-xl border border-slate-200/80 bg-navy-950 aspect-[4/5]">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1000&q=80"
-                  alt="Teacher and students engaged in classroom instruction at Divine Group of Schools"
-                  title="Dedicated Guidance & Instruction"
+                  src="https://i.ibb.co/Q3TZZf8H/IMG-8055.jpg"
+                  alt="Dedicated teachers and students engaged in classroom instruction at Divine Group of Schools"
+                  title="Dedicated Teachers & Guidance"
                   className="w-full h-full object-cover"
                 />
+
+                {/* Prominent Dedicated Teachers Label */}
+                <div className="absolute top-4 left-4 z-10">
+                  <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-navy-900/90 text-amber-300 border border-amber-500/50 backdrop-blur-md shadow-lg">
+                    <Users className="w-3.5 h-3.5 text-amber-400" />
+                    <span>Dedicated Teachers</span>
+                  </span>
+                </div>
               </div>
 
               {/* Floating Institutional Badge */}

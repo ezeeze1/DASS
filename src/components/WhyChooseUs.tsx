@@ -63,6 +63,23 @@ export default function WhyChooseUs() {
                   <p className="text-slate-600 text-sm sm:text-base leading-relaxed mt-3 font-normal">
                     {card.description}
                   </p>
+
+                  {card.id === 'experienced-teachers' && (
+                    <div className="mt-4 rounded-xl overflow-hidden border border-slate-200 h-28 relative">
+                      <img
+                        src="https://i.ibb.co/Q3TZZf8H/IMG-8055.jpg"
+                        alt="Dedicated teachers at Divine Group of Schools"
+                        referrerPolicy="no-referrer"
+                        crossOrigin="anonymous"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/60 via-transparent to-transparent" />
+                      <span className="absolute bottom-2 left-2 text-[10px] font-bold text-white bg-navy-900/80 px-2 py-0.5 rounded backdrop-blur-sm">
+                        Dedicated Faculty & Mentorship
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-slate-200/60 flex items-center justify-between text-xs text-slate-600 font-medium">
