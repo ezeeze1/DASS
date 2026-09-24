@@ -37,3 +37,24 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Home page text color rules: make other text solid black */
+#life-showcase h2, #life-showcase h3, #life-showcase p,
+#about h2, #about h3, #about p,
+#why-choose-us h2, #why-choose-us h3, #why-choose-us p,
+#schools h2, #schools h3, #schools p,
+#academics h2, #academics h3, #academics p,
+#facilities h2, #facilities h3, #facilities p,
+#admissions h2, #admissions h3, #admissions p,
+#gallery h2, #gallery h3, #gallery p,
+#testimonials h2, #testimonials h3, #testimonials p,
+#news h2, #news h3, #news p,
+#contact h2, #contact h3, #contact p {
+  color: #000000 !important;
+}
+
+/* Explicit white text protection */
+.text-white,
+.text-white * {
+  color: #ffffff !important;
+}
+

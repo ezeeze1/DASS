@@ -357,9 +357,9 @@ export default function AdmissionModal({ isOpen, onClose }: AdmissionModalProps)
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto px-7 py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold uppercase tracking-wider rounded-lg shadow-md transition-all active:translate-y-0.5"
+                  className="w-full sm:w-auto px-7 py-3 bg-amber-500 hover:bg-amber-400 text-white text-xs font-bold uppercase tracking-wider rounded-lg shadow-md transition-all active:translate-y-0.5"
                 >
-                  {isSubmitting ? 'Submitting Application...' : 'Submit Application Form'}
+                  <span className="text-white">{isSubmitting ? 'Submitting Application...' : 'Submit Application Form'}</span>
                 </button>
               </div>
             </form>

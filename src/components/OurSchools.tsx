@@ -176,9 +176,9 @@ export default function OurSchools({ onApplyForAdmission }: OurSchoolsProps) {
                     setSelectedLevel(null);
                     onApplyForAdmission();
                   }}
-                  className="w-full sm:w-auto px-6 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold uppercase tracking-wider rounded-lg shadow-md transition-colors"
+                  className="w-full sm:w-auto px-6 py-2.5 bg-amber-500 hover:bg-amber-400 text-white text-xs font-bold uppercase tracking-wider rounded-lg shadow-md transition-colors"
                 >
-                  Apply for Admission
+                  <span className="text-white">Apply for Admission</span>
                 </button>
               </div>
             </div>

@@ -43,38 +43,7 @@ export default function Header({ onOpenApplyModal, activeSection }: HeaderProps)
 
   return (
     <header className="sticky top-0 z-40 w-full transition-all duration-300">
-      {/* Top institutional utility bar */}
-      <div className="bg-navy-950 text-slate-300 text-xs border-b border-navy-800/60 hidden lg:block">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5 hover:text-amber-400 transition-colors">
-              <MapPin className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-              <span>{SCHOOL_INFO.location}, {SCHOOL_INFO.state}, {SCHOOL_INFO.country}</span>
-            </span>
-            <span className="flex items-center gap-1.5 hover:text-amber-400 transition-colors">
-              <Clock className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-              <span>{SCHOOL_INFO.openingHours}</span>
-            </span>
-          </div>
-
-          <div className="flex items-center gap-6">
-            <a
-              href={`tel:${SCHOOL_INFO.phones[0].replace(/[^0-9+]/g, '')}`}
-              className="flex items-center gap-1.5 hover:text-amber-400 transition-colors"
-            >
-              <Phone className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-              <span>{SCHOOL_INFO.phones[0]}</span>
-            </a>
-            <a
-              href={`mailto:${SCHOOL_INFO.emails[0]}`}
-              className="flex items-center gap-1.5 hover:text-amber-400 transition-colors"
-            >
-              <Mail className="w-3.5 h-3.5 text-amber-500 shrink-0" />
-              <span>{SCHOOL_INFO.emails[0]}</span>
-            </a>
-          </div>
-        </div>
-      </div>
+      {/* Top institutional utility bar - hidden as requested */}
 
       {/* Main Navigation Bar */}
       <nav
@@ -129,10 +98,10 @@ export default function Header({ onOpenApplyModal, activeSection }: HeaderProps)
           <div className="hidden md:flex items-center gap-3">
             <button
               onClick={onOpenApplyModal}
-              className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-xs uppercase tracking-wider rounded shadow-md hover:shadow-amber-500/20 active:translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+              className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold text-xs uppercase tracking-wider rounded shadow-md hover:shadow-amber-500/20 active:translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
             >
-              <span>APPLY FOR ADMISSION</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span className="text-white">APPLY FOR ADMISSION</span>
+              <ArrowRight className="w-3.5 h-3.5 text-white" />
             </button>
           </div>
 
@@ -140,9 +109,9 @@ export default function Header({ onOpenApplyModal, activeSection }: HeaderProps)
           <div className="flex items-center gap-2 xl:hidden">
             <button
               onClick={onOpenApplyModal}
-              className="hidden sm:inline-flex md:hidden items-center px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs uppercase tracking-wider rounded"
+              className="hidden sm:inline-flex md:hidden items-center px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs uppercase tracking-wider rounded"
             >
-              APPLY
+              <span className="text-white">APPLY</span>
             </button>
 
             <button
@@ -188,10 +157,10 @@ export default function Header({ onOpenApplyModal, activeSection }: HeaderProps)
                     setMobileMenuOpen(false);
                     onOpenApplyModal();
                   }}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-sm uppercase tracking-wider rounded shadow-md"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm uppercase tracking-wider rounded shadow-md"
                 >
-                  <span>APPLY FOR ADMISSION</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span className="text-white">APPLY FOR ADMISSION</span>
+                  <ArrowRight className="w-4 h-4 text-white" />
                 </button>
 
                 <div className="text-xs text-slate-400 pt-2 space-y-1 text-center">

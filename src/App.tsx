@@ -132,7 +132,7 @@ function MainSite() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans selection:bg-amber-500/20 selection:text-amber-950">
+    <div className="min-h-screen bg-slate-50 text-black flex flex-col font-sans selection:bg-amber-500/20 selection:text-amber-950">
       {/* Top Floating Admin Status Bar when logged in */}
       <AdminBar onOpenAdmin={() => navigateToAdmin('info')} />
 
