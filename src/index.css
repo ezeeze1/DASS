@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cinzel", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  --color-navy-950: #071727;
+  --color-navy-900: #0F2942;
+  --color-navy-850: #13304E;
+  --color-navy-800: #1A3E63;
+  --color-navy-700: #23517F;
+  --color-navy-100: #E2EAF2;
+  --color-navy-50: #F0F5FA;
+
+  --color-gold-700: #92400E;
+  --color-gold-600: #B45309;
+  --color-gold-500: #D97706;
+  --color-gold-400: #F59E0B;
+  --color-gold-300: #FCD34D;
+  --color-gold-200: #FDE68A;
+  --color-gold-100: #FEF3C7;
+  --color-gold-50: #FFFBEB;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom styling for school elegance */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Smooth transitions */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+

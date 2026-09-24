@@ -1,0 +1,6 @@
+{
+  "name": "Divine Group of Schools",
+  "description": "Divine Group of Schools provides a nurturing learning environment focused on academic excellence, character development and leadership in Okene, Kogi State, Nigeria.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
