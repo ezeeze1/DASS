@@ -145,15 +145,15 @@ export default function ContactSection() {
                 <h4 className="font-serif font-bold text-navy-900 text-sm">School Campus Location</h4>
               </div>
               <p className="text-xs text-slate-600 mb-4">
-                Situated in Okene, Kogi State, easily accessible via the main municipal and inter-state corridors.
+                Situated at Former Bamijoko Compound, Inoziomi, Okene, Kogi State, easily accessible for parents and visitors.
               </p>
               {/* Map embed / locator representation */}
               <div className="relative rounded-xl overflow-hidden bg-navy-950 h-44 flex flex-col items-center justify-center text-center p-4 border border-slate-300">
                 <MapPin className="w-8 h-8 text-amber-400 mb-2 animate-bounce" />
-                <span className="font-serif font-bold text-white text-sm">Okene, Kogi State</span>
-                <span className="text-[11px] text-slate-300 mt-1">Federal Republic of Nigeria</span>
+                <span className="font-serif font-bold text-white text-sm">Former Bamijoko Compound, Inoziomi</span>
+                <span className="text-[11px] text-slate-300 mt-1">Okene, Kogi State, Nigeria</span>
                 <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Okene, Kogi State, Nigeria')}`}
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Former Bamijoko Compound, Inoziomi, Okene, Kogi State, Nigeria')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-3 px-3 py-1 bg-amber-500 text-slate-950 text-xs font-bold uppercase tracking-wider rounded hover:bg-amber-400 transition-colors"

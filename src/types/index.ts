@@ -21,6 +21,8 @@ export interface SevenLifeImage {
   src: string;
 }
 
+export type ShowcaseImage = SevenLifeImage;
+
 export interface SchoolLevel {
   id: string;
   name: string;

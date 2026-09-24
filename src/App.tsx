@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import SevenImageFeature from './components/SevenImageFeature';
+import FiveImageFeature from './components/FiveImageFeature';
 import AboutSection from './components/AboutSection';
 import WhyChooseUs from './components/WhyChooseUs';
 import OurSchools from './components/OurSchools';
@@ -16,6 +16,7 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import AdmissionModal from './components/AdmissionModal';
 import LightboxModal from './components/LightboxModal';
+import WhatsAppButton from './components/WhatsAppButton';
 
 export default function App() {
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
@@ -88,10 +89,10 @@ export default function App() {
         />
 
         {/* 
-          SEVEN-IMAGE HOMEPAGE FEATURE
-          Prominently displays the 7 required primary images directly on the homepage
+          FIVE-IMAGE HOMEPAGE FEATURE
+          Prominently holds 5 core school images in an interactive transitional display
         */}
-        <SevenImageFeature
+        <FiveImageFeature
           onSelectImage={(img) => setSelectedLightboxImage(img)}
         />
 
@@ -157,6 +158,9 @@ export default function App() {
         image={selectedLightboxImage}
         onClose={() => setSelectedLightboxImage(null)}
       />
+
+      {/* Floating Hovering WhatsApp Button */}
+      <WhatsAppButton />
     </div>
   );
 }

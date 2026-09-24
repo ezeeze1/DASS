@@ -18,11 +18,62 @@ export const SCHOOL_INFO: SchoolInfo = {
   location: 'Okene',
   state: 'Kogi State',
   country: 'Nigeria',
-  address: 'Divine Campus Boulevard, Along Okene-Ajaokuta Expressway, Okene, Kogi State, Nigeria',
+  address: 'Former Bamijoko Compound, Inoziomi, Okene, Kogi State, Nigeria',
   phones: ['+234 (0) 803 892 4110', '+234 (0) 815 440 2933'],
   emails: ['admissions@divinegroupofschools.edu.ng', 'info@divinegroupofschools.edu.ng'],
   openingHours: 'Monday – Friday: 7:30 AM – 4:00 PM (Office closes 4:30 PM)',
 };
+
+/**
+ * FIVE CORE TRANSITIONAL HOMEPAGE IMAGES
+ * 1. Campus & Administrative Complex
+ * 2. Modern Classrooms
+ * 3. Students Learning & Collaboration
+ * 4. Teachers & Mentorship
+ * 5. Science & Computer Laboratory
+ */
+export const HOMEPAGE_FIVE_IMAGES: SevenLifeImage[] = [
+  {
+    id: 1,
+    title: 'School Campus & Administrative Complex',
+    category: '1. Campus & Environment',
+    caption: 'Modern multi-storey administrative and academic wings with serene, secure grounds at Former Bamijoko Compound, Inoziomi, Okene.',
+    alt: 'Divine Group of Schools campus building with landscaped grounds',
+    src: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=85',
+  },
+  {
+    id: 2,
+    title: 'Modern Classrooms & Audio-Visual Learning',
+    category: '2. Modern Classrooms',
+    caption: 'Bright, well-ventilated learning spaces equipped with ergonomic desks, digital whiteboards, and inspiring study corners.',
+    alt: 'Spacious modern classroom with students engaged in study',
+    src: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1600&q=85',
+  },
+  {
+    id: 3,
+    title: 'Students Learning in Active Collaboration',
+    category: '3. Academic Engagement',
+    caption: 'Encouraging peer problem-solving, reading culture, teamwork, and deep conceptual understanding in every subject.',
+    alt: 'African students actively participating and collaborating in class',
+    src: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1600&q=85',
+  },
+  {
+    id: 4,
+    title: 'Dedicated Teachers & Individual Mentorship',
+    category: '4. Mentorship & Care',
+    caption: 'Caring educators providing personalized academic attention, moral guidance, and holistic character molding for each child.',
+    alt: 'Supportive teacher mentoring a student warmly during lessons',
+    src: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1600&q=85',
+  },
+  {
+    id: 5,
+    title: 'Practical Science & ICT Innovation Lab',
+    category: '5. Science & Innovation',
+    caption: 'Hands-on laboratory stations and modern computing suites for empirical experimentation and 21st-century digital literacy.',
+    alt: 'Students conducting science experiments and technology practicals in laboratory',
+    src: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1600&q=85',
+  },
+];
 
 /**
  * EXACT SEVEN PRIMARY IMAGES REQUIRED ON THE HOMEPAGE:

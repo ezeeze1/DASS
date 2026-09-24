@@ -1,36 +1,118 @@
-import { ChevronDown, Compass, FileText, MapPin, Award, BookCheck, Shield } from 'lucide-react';
-import { SCHOOL_INFO } from '../data/schoolData';
+import { useState, useEffect, useCallback } from 'react';
+import {
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Compass,
+  FileText,
+  MapPin,
+  Award,
+  BookCheck,
+  Shield,
+  Camera,
+} from 'lucide-react';
+import { SCHOOL_INFO, HOMEPAGE_FIVE_IMAGES } from '../data/schoolData';
 
 interface HeroProps {
   onExploreClick: () => void;
   onAdmissionsClick: () => void;
 }
 
+const HERO_AUTOPLAY_DELAY = 5000; // 5 seconds per transitional image
+
 export default function Hero({ onExploreClick, onAdmissionsClick }: HeroProps) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const images = HOMEPAGE_FIVE_IMAGES;
+  const totalSlides = images.length; // Exactly 5 images
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+  }, [totalSlides]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  }, [totalSlides]);
+
+  // Automatic transition every 5 seconds
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(nextSlide, HERO_AUTOPLAY_DELAY);
+    return () => clearInterval(interval);
+  }, [isPaused, nextSlide]);
+
   return (
     <section
       id="home"
-      className="relative min-h-[90vh] lg:min-h-[92vh] flex items-center justify-center overflow-hidden bg-navy-950"
+      className="relative min-h-[90vh] lg:min-h-[94vh] flex items-center justify-center overflow-hidden bg-navy-950"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Background High-Quality Campus Image */}
+      {/* 
+        5 TRANSITIONAL BACKGROUND IMAGES
+        Smooth cross-fade and subtle pan/zoom effect across all 5 images
+      */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=2000&q=85"
-          alt="Divine Group of Schools campus building"
-          className="w-full h-full object-cover object-center scale-105 transform motion-safe:animate-[subtle-zoom_20s_infinite_alternate]"
-        />
-        {/* Subtle Dark Gradient Overlay for Maximum Readability */}
+        {images.map((img, index) => {
+          const isActive = index === currentSlide;
+          return (
+            <div
+              key={img.id}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'
+              }`}
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                className={`w-full h-full object-cover object-center transition-transform duration-[6000ms] ease-out ${
+                  isActive ? 'scale-105' : 'scale-100'
+                }`}
+                loading={index === 0 ? 'eager' : 'lazy'}
+              />
+            </div>
+          );
+        })}
+
+        {/* Cinematic Dark Gradient Overlays for Maximum Text Readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-900/85 to-navy-950/90" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-navy-950/60" />
         {/* Subtle decorative grid overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:24px_24px] opacity-10 pointer-events-none" />
       </div>
 
+      {/* Floating Transition Nav Buttons (Left / Right) */}
+      <button
+        onClick={prevSlide}
+        aria-label="Previous hero image"
+        className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-navy-900/70 hover:bg-amber-500 text-white hover:text-navy-950 border border-white/20 hover:border-amber-400 backdrop-blur-md items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+
+      <button
+        onClick={nextSlide}
+        aria-label="Next hero image"
+        className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-navy-900/70 hover:bg-amber-500 text-white hover:text-navy-950 border border-white/20 hover:border-amber-400 backdrop-blur-md items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 flex flex-col items-center text-center">
-        {/* Location badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-navy-800/80 border border-amber-500/30 text-amber-300 text-xs sm:text-sm font-medium backdrop-blur-sm mb-6 shadow-sm">
-          <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-          <span>Okene, Kogi State, Nigeria</span>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 flex flex-col items-center text-center">
+        {/* Location badge + Transitional image indicator */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900 border border-navy-700 text-white text-xs sm:text-sm font-medium backdrop-blur-sm shadow-sm">
+            <MapPin className="w-3.5 h-3.5 text-white shrink-0" />
+            <span className="text-white">Okene, Kogi State, Nigeria</span>
+          </div>
+
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-navy-900/80 border border-amber-500/40 text-amber-300 text-xs font-semibold backdrop-blur-sm shadow-sm">
+            <Camera className="w-3.5 h-3.5 text-amber-400" />
+            <span>
+              Image {currentSlide + 1} of {totalSlides}: {images[currentSlide].title}
+            </span>
+          </div>
         </div>
 
         {/* Hero Title */}
@@ -67,9 +149,36 @@ export default function Hero({ onExploreClick, onAdmissionsClick }: HeroProps) {
           </button>
         </div>
 
+        {/* 5-Slide Transitional Control Bar with Thumbnail Indicators */}
+        <div className="mt-10 flex items-center justify-center gap-2 sm:gap-3 p-1.5 rounded-full bg-navy-900/80 border border-slate-700/80 backdrop-blur-md">
+          {images.map((img, idx) => {
+            const isActive = idx === currentSlide;
+            return (
+              <button
+                key={img.id}
+                onClick={() => setCurrentSlide(idx)}
+                aria-label={`Switch to slide ${idx + 1}: ${img.title}`}
+                className={`group flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-300 focus:outline-none ${
+                  isActive
+                    ? 'bg-amber-500 text-navy-950 shadow-md scale-105'
+                    : 'text-slate-300 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                <span className="text-[11px] font-bold">0{idx + 1}</span>
+                {isActive && (
+                  <span className="hidden sm:inline text-[11px] truncate max-w-[140px]">
+                    {img.title.split('&')[0]}
+                  </span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+
         {/* Key Values Quick Strip */}
-        <div className="mt-14 pt-8 border-t border-slate-700/60 w-full max-w-4xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
-          <div className="flex items-center gap-3 p-3 rounded-lg bg-navy-900/40 border border-slate-800/60 backdrop-blur-sm">
+        <div className="mt-10 pt-8 border-t border-slate-700/60 w-full max-w-4xl grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-navy-900/60 border border-slate-800/80 backdrop-blur-sm">
             <div className="w-10 h-10 rounded bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
               <Award className="w-5 h-5" />
             </div>
@@ -79,7 +188,7 @@ export default function Hero({ onExploreClick, onAdmissionsClick }: HeroProps) {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-3 rounded-lg bg-navy-900/40 border border-slate-800/60 backdrop-blur-sm">
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-navy-900/60 border border-slate-800/80 backdrop-blur-sm">
             <div className="w-10 h-10 rounded bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
               <BookCheck className="w-5 h-5" />
             </div>
@@ -89,7 +198,7 @@ export default function Hero({ onExploreClick, onAdmissionsClick }: HeroProps) {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-3 rounded-lg bg-navy-900/40 border border-slate-800/60 backdrop-blur-sm">
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-navy-900/60 border border-slate-800/80 backdrop-blur-sm">
             <div className="w-10 h-10 rounded bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
               <Shield className="w-5 h-5" />
             </div>

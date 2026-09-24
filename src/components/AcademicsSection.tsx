@@ -75,19 +75,19 @@ export default function AcademicsSection() {
           })}
 
           {/* Academic Philosophy Feature Block */}
-          <div className="p-6 rounded-2xl bg-gradient-to-br from-navy-900 to-navy-950 text-white border border-navy-800 shadow-md flex flex-col justify-between">
+          <div className="p-6 rounded-2xl bg-gradient-to-br from-amber-50 to-amber-100/90 border-2 border-amber-300 text-black shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
             <div>
-              <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">
+              <span className="text-xs font-bold text-black uppercase tracking-wider">
                 Teaching Philosophy
               </span>
-              <h3 className="font-serif text-lg sm:text-xl font-bold text-white tracking-tight mt-1">
+              <h3 className="font-serif text-lg sm:text-xl font-bold text-black tracking-tight mt-1">
                 Holistic Pedagogy
               </h3>
-              <p className="text-slate-300 text-xs sm:text-sm mt-3 leading-relaxed">
+              <p className="text-black text-xs sm:text-sm mt-3 leading-relaxed">
                 We cultivate disciplined study habits, verbal eloquence, analytical thinking, and ethical leadership in every subject area.
               </p>
             </div>
-            <div className="mt-6 pt-3 border-t border-navy-800 text-xs text-amber-300 font-medium">
+            <div className="mt-6 pt-3 border-t border-amber-300/80 text-xs text-black font-semibold">
               Divine Group of Schools · Okene
             </div>
           </div>

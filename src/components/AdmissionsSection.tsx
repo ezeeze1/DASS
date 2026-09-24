@@ -14,27 +14,27 @@ export default function AdmissionsSection({
     <section id="admissions" className="py-20 lg:py-28 bg-white border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Banner Block */}
-        <div className="bg-gradient-to-br from-navy-950 via-navy-900 to-navy-850 rounded-3xl p-8 sm:p-12 lg:p-16 text-white shadow-2xl relative overflow-hidden border border-navy-800">
+        <div className="bg-gradient-to-br from-amber-50 via-white to-amber-100/60 rounded-3xl p-8 sm:p-12 lg:p-16 text-black shadow-xl relative overflow-hidden border border-amber-200">
           {/* Subtle background glow */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-3xl">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/30 mb-4">
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Enrollment Open · Okene, Kogi State</span>
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-navy-950 text-white border border-navy-700 shadow-md mb-4">
+              <Calendar className="w-3.5 h-3.5 text-white" />
+              <span className="text-white">Enrollment Open · Okene, Kogi State</span>
             </span>
 
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight uppercase leading-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black tracking-tight uppercase leading-tight">
               START YOUR CHILD'S JOURNEY WITH US
             </h2>
 
             <div className="w-20 h-1 bg-amber-500 my-5 rounded-full" />
 
-            <p className="text-slate-200 text-base sm:text-xl font-normal leading-relaxed">
+            <p className="text-black text-base sm:text-xl font-medium leading-relaxed">
               "Give your child an environment where learning, character and personal development can flourish."
             </p>
 
-            <p className="text-slate-300 text-sm sm:text-base mt-4 max-w-2xl leading-relaxed">
+            <p className="text-black text-sm sm:text-base mt-4 max-w-2xl leading-relaxed">
               We welcome prospective families to experience our campus, consult with our educational coordinators, and register their wards for Creche, Primary, and Secondary sections.
             </p>
 
@@ -42,7 +42,7 @@ export default function AdmissionsSection({
             <div className="mt-8 flex flex-col sm:flex-row items-center gap-4">
               <button
                 onClick={onOpenApplyModal}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider rounded shadow-lg shadow-amber-500/20 active:translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-amber-500 hover:bg-amber-400 text-black font-bold text-xs uppercase tracking-wider rounded shadow-lg shadow-amber-500/20 active:translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-navy-900"
               >
                 <ClipboardCheck className="w-4 h-4" />
                 <span>ADMISSION INFORMATION</span>
@@ -50,7 +50,7 @@ export default function AdmissionsSection({
 
               <button
                 onClick={onContactClick}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-navy-800 hover:bg-navy-700 text-white border border-slate-600 hover:border-amber-400 font-bold text-xs uppercase tracking-wider rounded shadow-md active:translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-navy-950 hover:bg-navy-900 text-white border border-navy-800 hover:border-amber-500 font-bold text-xs uppercase tracking-wider rounded shadow-md active:translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-navy-900"
               >
                 <PhoneCall className="w-4 h-4 text-amber-400" />
                 <span>CONTACT THE SCHOOL</span>
