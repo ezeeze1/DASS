@@ -7,6 +7,10 @@ import {
   GalleryItem,
   Testimonial,
   NewsItem,
+  TeachingJobOpening,
+  EmploymentSectionData,
+  StudentAdmissionApplication,
+  TeachingApplication,
 } from '../types';
 
 export const SCHOOL_INFO: SchoolInfo = {
@@ -458,3 +462,271 @@ export const ADMISSION_STEPS = [
     desc: 'Upon review, an official admission letter is issued alongside school uniform fitting, booklists, and resumption orientation guidelines.',
   },
 ];
+
+export const DEFAULT_TEACHING_VACANCIES: TeachingJobOpening[] = [
+  {
+    id: 'job-primary-class',
+    title: 'Primary Class Teacher (Basic 1 - 6)',
+    department: 'Primary Section',
+    level: 'Basic Education (Basic 1 - 6)',
+    employmentType: 'Full-Time',
+    location: 'Okene, Kogi State',
+    deadline: 'Rolling Admissions & Recruitment',
+    description:
+      'We are seeking passionate, disciplined, and child-centered Primary School educators committed to foundational numeracy, literacy, active pupil engagement, and character development.',
+    requirements: [
+      'N.C.E, B.Ed, or B.Sc/B.A with PGDE in Primary Education, English, Mathematics or related disciplines',
+      'Demonstrated passion for child-centered pedagogy and active classroom engagement',
+      'TRCN certification or active registration process',
+      'Excellent spoken and written English, neat handwriting, and basic digital literacy',
+      'Minimum of 1 - 2 years relevant primary school classroom experience',
+    ],
+    responsibilities: [
+      'Deliver engaging, curriculum-aligned lessons across primary subjects',
+      'Prepare weekly instructional lesson notes and evaluate pupil progress continuously',
+      'Cultivate an orderly, inspiring, and morally upright classroom atmosphere',
+      'Communicate proactively with parents and participate in school co-curricular activities',
+    ],
+  },
+  {
+    id: 'job-secondary-maths',
+    title: 'Secondary Mathematics & Further Mathematics Teacher',
+    department: 'Senior Secondary',
+    level: 'JSS 1 - SSS 3',
+    employmentType: 'Full-Time',
+    location: 'Okene, Kogi State',
+    deadline: 'Open for Next Academic Session',
+    description:
+      'Join our STEM faculty to inspire students in General Mathematics and Further Mathematics, preparing scholars for outstanding results in BECE, WAEC, NECO, and UTME.',
+    requirements: [
+      'B.Sc (Ed) Mathematics, B.Sc Mathematics, Statistics, Engineering or PGDE equivalent',
+      'Proven track record of high student pass rates in WAEC/NECO examinations',
+      'Ability to demystify complex calculations with patience, clarity, and practical examples',
+      'Proficiency in preparing candidates for Olympiads and national math competitions',
+      'Minimum of 2 years teaching experience in secondary schools',
+    ],
+    responsibilities: [
+      'Teach Mathematics and Further Mathematics across junior and senior school streams',
+      'Organize math clinic sessions for struggling learners and mentoring for gifted pupils',
+      'Coordinate the school Mathematics Club and Cowbellpedia / Olympiad training',
+      'Maintain diligent grade records, continuous assessments, and term reports',
+    ],
+  },
+  {
+    id: 'job-secondary-english',
+    title: 'English Language & Literature-in-English Teacher',
+    department: 'Junior & Senior Secondary',
+    level: 'JSS 1 - SSS 3',
+    employmentType: 'Full-Time',
+    location: 'Okene, Kogi State',
+    deadline: 'Open for Next Academic Session',
+    description:
+      'We are recruiting an articulate and inspiring educator to teach English grammar, phonetics, essay writing, and African and non-African literary texts.',
+    requirements: [
+      'B.A (Ed) English, B.A English & Literary Studies, Linguistics or PGDE equivalent',
+      'Impeccable diction, phonetics proficiency, and passion for creative writing and debate',
+      'Deep familiarity with current WAEC/NECO Literature curriculum and poetry analysis',
+      'Enthusiasm for directing student drama sketches and public speaking workshops',
+    ],
+    responsibilities: [
+      'Instruct students in English phonology, syntax, comprehension, and essay writing',
+      'Analyze prescribed prose, drama, and poetry texts for JSS and SSS levels',
+      'Coach the school Literary and Debating Society for inter-school debates',
+      'Promote a vibrant library reading culture and vocabulary drills across campus',
+    ],
+  },
+  {
+    id: 'job-secondary-science',
+    title: 'Basic Science, Chemistry & Physics Teacher',
+    department: 'Senior Secondary',
+    level: 'SSS 1 - SSS 3 & JSS Basic Science',
+    employmentType: 'Full-Time',
+    location: 'Okene, Kogi State',
+    deadline: 'Open for Next Academic Session',
+    description:
+      'Dynamic science teachers capable of bringing laboratory experiments to life and guiding future doctors, engineers, and scientific innovators.',
+    requirements: [
+      'B.Sc (Ed) Chemistry, Physics, or B.Sc in Pure/Applied Sciences with PGDE',
+      'Demonstrated expertise in science laboratory safety, chemical reagents, and physical apparatus',
+      'Experience preparing students for WAEC/NECO practical examinations',
+      'Commitment to practical STEM demonstrations and inquiry-based learning',
+    ],
+    responsibilities: [
+      'Deliver interactive theory and practical laboratory sessions in our science labs',
+      'Set up experiments, enforce laboratory safety protocols, and curate lab equipment',
+      'Guide students in annual science exhibitions, STEM models, and quiz competitions',
+    ],
+  },
+  {
+    id: 'job-nursery-phonics',
+    title: 'Early Years / Nursery & Phonics Specialist',
+    department: 'Early Years / Nursery',
+    level: 'Creche & Nursery 1 - 2',
+    employmentType: 'Full-Time',
+    location: 'Okene, Kogi State',
+    deadline: 'Open',
+    description:
+      'A warm, creative, and attentive educator to nurture our youngest scholars, building foundational reading, social skills, and motor development.',
+    requirements: [
+      'NCE in Early Childhood Care Education (ECCE) or Primary Education, or B.Ed Early Childhood',
+      'Certified Jolly Phonics or Montessori background is an added advantage',
+      'Patience, loving temperament, and high emotional sensitivity to toddler needs',
+      'Creativity in rhymes, educational play, art, and storytelling',
+    ],
+    responsibilities: [
+      'Create a stimulating, safe, and joyful early childhood learning atmosphere',
+      'Instruct pupils in phonemic awareness, letter sounds, and early numbers',
+      'Supervise hygiene, nutrition routines, and developmental play activities',
+      'Maintain close, reassuring communication with parents of young children',
+    ],
+  },
+  {
+    id: 'job-ict-computer',
+    title: 'Computer Studies / ICT Instructor & Lab Coordinator',
+    department: 'Vocational / ICT',
+    level: 'Basic 1 - SSS 3',
+    employmentType: 'Full-Time',
+    location: 'Okene, Kogi State',
+    deadline: 'Open',
+    description:
+      'Teach digital literacy, computer coding fundamentals, typing, and software applications, while overseeing school computer laboratory operations.',
+    requirements: [
+      'B.Sc, HND, or B.Ed in Computer Science, ICT, or Information Systems',
+      'Hands-on knowledge of computer hardware troubleshooting, networking, and software packages',
+      'Familiarity with Scratch/Python for kids, web basics, or graphic design tools is a plus',
+      'Aptitude for teaching both primary pupils and secondary candidates preparing for CBT exams',
+    ],
+    responsibilities: [
+      'Conduct practical ICT classes in the school computer laboratory',
+      'Prepare secondary students for JAMB CBT exam simulations and computer-based tests',
+      'Maintain school computing equipment, internet connectivity, and instructional tech',
+    ],
+  },
+];
+
+export const DEFAULT_EMPLOYMENT_SECTION: EmploymentSectionData = {
+  badge: 'Career Opportunities · Teaching Faculty',
+  headline: 'SHAPE FUTURE LEADERS WITH DIVINE GROUP OF SCHOOLS',
+  subtitle:
+    'Join our community of passionate, dedicated educators in Okene, Kogi State. We value teacher excellence, professional growth, and moral leadership.',
+  whyWorkHereTitle: 'Why Build Your Teaching Career With Us?',
+  benefits: [
+    {
+      title: 'Competitive Compensation & Timely Remuneration',
+      desc: 'Prompt salary payments, performance incentives, and appreciation for committed educators.',
+    },
+    {
+      title: 'Continuous Professional Development',
+      desc: 'Regular pedagogical seminars, modern instructional workshops, and digital teaching certifications.',
+    },
+    {
+      title: 'Conducive & Disciplined Teaching Environment',
+      desc: 'Well-structured classrooms, supportive management, and motivated scholars who value learning.',
+    },
+    {
+      title: 'Community of Dedicated Educators',
+      desc: 'Collaborate with experienced subject leaders and passionate mentors in an uplifting school culture.',
+    },
+  ],
+  hiringSteps: [
+    {
+      step: '01',
+      title: 'Online Application',
+      desc: 'Submit your teaching application form, qualification details, and statement of purpose online.',
+    },
+    {
+      step: '02',
+      title: 'Academic & Pedagogy Assessment',
+      desc: 'Shortlisted candidates undergo a subject knowledge evaluation and micro-teaching demonstration.',
+    },
+    {
+      step: '03',
+      title: 'Panel Interview',
+      desc: 'Meet with school leadership to discuss educational philosophy, moral values, and student mentorship.',
+    },
+    {
+      step: '04',
+      title: 'Offer & Faculty Induction',
+      desc: 'Successful educators receive official appointment letters followed by comprehensive school induction.',
+    },
+  ],
+};
+
+export const INITIAL_STUDENT_APPLICATIONS: StudentAdmissionApplication[] = [
+  {
+    id: 'app-stud-1',
+    referenceNumber: 'DGS-ADM-2026-1402',
+    createdAt: '2026-09-18T10:30:00.000Z',
+    studentFullName: 'David Oluwaseun Ibrahim',
+    dateOfBirth: '2014-05-12',
+    gender: 'Male',
+    levelApplying: 'Primary School (Basic 1 - 6)',
+    entryTerm: 'First Term (September Entry)',
+    previousSchool: 'Grace Heritage Academy, Lokoja',
+    lastClassCompleted: 'Basic 4',
+    parentFullName: 'Engr. Michael Ibrahim',
+    parentRelationship: 'Father',
+    parentPhone: '+234 803 234 5678',
+    parentWhatsapp: '+234 803 234 5678',
+    parentEmail: 'michael.ibrahim@example.com',
+    parentAddress: 'GRA Extension, Okene, Kogi State',
+    academicInterests: 'Mathematics, Science experiments and Football',
+    status: 'Pending Review',
+  },
+  {
+    id: 'app-stud-2',
+    referenceNumber: 'DGS-ADM-2026-2891',
+    createdAt: '2026-09-21T14:15:00.000Z',
+    studentFullName: 'Fatima Zainab Ohiare',
+    dateOfBirth: '2012-08-24',
+    gender: 'Female',
+    levelApplying: 'Junior Secondary (JSS 1 - JSS 3)',
+    entryTerm: 'First Term (September Entry)',
+    previousSchool: 'Divine Group Primary Section',
+    lastClassCompleted: 'Basic 6',
+    parentFullName: 'Hajiya Amina Ohiare',
+    parentRelationship: 'Mother',
+    parentPhone: '+234 815 678 9012',
+    parentEmail: 'amina.ohiare@example.com',
+    parentAddress: 'Inoziomi District, Okene, Kogi State',
+    academicInterests: 'Literary debate, Creative writing and French',
+    status: 'Assessment Scheduled',
+    adminNotes: 'Candidate invited for entrance placement test on Saturday.',
+  },
+];
+
+export const INITIAL_TEACHING_APPLICATIONS: TeachingApplication[] = [
+  {
+    id: 'app-teach-1',
+    referenceNumber: 'DGS-TEA-2026-8831',
+    createdAt: '2026-09-19T09:40:00.000Z',
+    fullName: 'Emmanuel Sunday Adebayo',
+    email: 'adebayo.emmanuel@example.com',
+    phone: '+234 802 345 6789',
+    whatsapp: '+234 802 345 6789',
+    residentialAddress: 'Zone 4, Okengwe Road, Okene, Kogi State',
+    stateOfOrigin: 'Kogi State',
+    positionAppliedFor: 'Secondary Mathematics & Further Mathematics Teacher',
+    highestQualification: 'B.Sc (Ed) Mathematics',
+    institutionGraduated: 'Federal University Lokoja',
+    yearGraduated: '2021',
+    courseOfStudy: 'Mathematics Education',
+    yearsOfExperience: '3 - 5 Years',
+    previousSchoolOrEmployer: 'Standard High School, Lokoja',
+    trcnCertified: 'Yes',
+    primarySubjects: 'General Mathematics, Further Mathematics',
+    secondarySubjects: 'Basic Science & Technology',
+    availability: 'Immediately / 2 Weeks Notice',
+    expectedSalaryRange: 'Competitive School Scale',
+    cvResumeText:
+      'Experienced Secondary Math Educator with 4 years classroom track record. Prepared over 180 candidates for WAEC/NECO with 94% credit pass rate. Coached students to state math competition finals.',
+    coverLetter:
+      'I am applying to Divine Group of Schools because of your renowned reputation for moral discipline and academic excellence in Kogi State. My teaching methodology bridges real-world problem solving with core exam preparedness.',
+    status: 'Shortlisted',
+    adminNotes: 'Invited for teaching demonstration in Calculus and Quadratic Equations.',
+  },
+];
+
+export const SAMPLE_STUDENT_APPLICATIONS = INITIAL_STUDENT_APPLICATIONS;
+export const SAMPLE_TEACHING_APPLICATIONS = INITIAL_TEACHING_APPLICATIONS;
+

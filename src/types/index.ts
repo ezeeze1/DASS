@@ -125,6 +125,79 @@ export interface CallToActionData {
   secondaryButtonText: string;
 }
 
+export interface TeachingJobOpening {
+  id: string;
+  title: string;
+  department: string;
+  level: string;
+  employmentType: 'Full-Time' | 'Part-Time' | 'Contract';
+  location: string;
+  deadline?: string;
+  description: string;
+  requirements: string[];
+  responsibilities: string[];
+}
+
+export interface TeachingApplication {
+  id: string;
+  referenceNumber: string;
+  createdAt: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  whatsapp?: string;
+  residentialAddress: string;
+  stateOfOrigin?: string;
+  positionAppliedFor: string;
+  highestQualification: string;
+  institutionGraduated: string;
+  yearGraduated?: string;
+  courseOfStudy: string;
+  yearsOfExperience: string;
+  previousSchoolOrEmployer: string;
+  trcnCertified: 'Yes' | 'No' | 'In Progress';
+  primarySubjects: string;
+  secondarySubjects?: string;
+  availability: string;
+  expectedSalaryRange?: string;
+  cvResumeText: string;
+  coverLetter: string;
+  status: 'Pending' | 'Shortlisted' | 'Interview Scheduled' | 'Employed' | 'Archived';
+  adminNotes?: string;
+}
+
+export interface StudentAdmissionApplication {
+  id: string;
+  referenceNumber: string;
+  createdAt: string;
+  studentFullName: string;
+  dateOfBirth: string;
+  gender: 'Male' | 'Female';
+  levelApplying: string;
+  entryTerm: string;
+  previousSchool: string;
+  lastClassCompleted: string;
+  parentFullName: string;
+  parentRelationship: string;
+  parentPhone: string;
+  parentWhatsapp?: string;
+  parentEmail: string;
+  parentAddress: string;
+  medicalOrSpecialNeeds?: string;
+  academicInterests?: string;
+  status: 'Pending Review' | 'Assessment Scheduled' | 'Accepted' | 'Declined';
+  adminNotes?: string;
+}
+
+export interface EmploymentSectionData {
+  badge: string;
+  headline: string;
+  subtitle: string;
+  whyWorkHereTitle: string;
+  benefits: { title: string; desc: string; iconName?: string }[];
+  hiringSteps: { step: string; title: string; desc: string }[];
+}
+
 export interface WebsiteContent {
   schoolInfo: SchoolInfo;
   fiveImages: SevenLifeImage[];
@@ -135,6 +208,7 @@ export interface WebsiteContent {
   academicPhilosophy: AcademicPhilosophyData;
   facilities: Facility[];
   admissions: AdmissionSectionData;
+  employment?: EmploymentSectionData;
   gallery: GalleryItem[];
   testimonials: Testimonial[];
   news: NewsItem[];
@@ -153,3 +227,4 @@ export interface AdmissionFormData {
   parentAddress: string;
   notes: string;
 }
+

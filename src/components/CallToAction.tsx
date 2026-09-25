@@ -55,7 +55,18 @@ export default function CallToAction({
           </button>
         </div>
 
-        <p className="text-slate-400 text-xs mt-6">
+        <div className="mt-8 pt-6 border-t border-slate-800/80 flex flex-wrap items-center justify-center gap-4 text-xs">
+          <span className="text-slate-400">Passionate educator seeking an impactful teaching role?</span>
+          <a
+            href="#employment"
+            className="inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 font-bold underline underline-offset-4 decoration-amber-500/50"
+          >
+            <span>Explore Faculty Openings & Apply Online</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
+        </div>
+
+        <p className="text-slate-400 text-xs mt-4">
           {schoolInfo.name} · {schoolInfo.location}, {schoolInfo.state}, Nigeria
         </p>
       </div>

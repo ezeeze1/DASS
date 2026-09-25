@@ -10,12 +10,24 @@ import {
   AcademicPhilosophyData,
   Facility,
   AdmissionSectionData,
+  EmploymentSectionData,
   GalleryItem,
   Testimonial,
   NewsItem,
   CallToActionData,
+  TeachingJobOpening,
+  TeachingApplication,
+  StudentAdmissionApplication,
 } from '../types';
-import { DEFAULT_WEBSITE_CONTENT } from '../data/defaultWebsiteContent';
+import {
+  DEFAULT_WEBSITE_CONTENT,
+} from '../data/defaultWebsiteContent';
+import {
+  DEFAULT_EMPLOYMENT_SECTION,
+  DEFAULT_TEACHING_VACANCIES,
+  SAMPLE_STUDENT_APPLICATIONS,
+  SAMPLE_TEACHING_APPLICATIONS,
+} from '../data/schoolData';
 import {
   checkIsAdminAuthenticated,
   verifyAdminCredentials,
@@ -24,6 +36,9 @@ import {
 } from '../utils/auth';
 
 const STORAGE_KEY = 'divine_school_website_content_v1';
+const STORAGE_KEY_STUDENTS = 'divine_school_student_apps_v1';
+const STORAGE_KEY_TEACHERS = 'divine_school_teacher_apps_v1';
+const STORAGE_KEY_VACANCIES = 'divine_school_teaching_vacancies_v1';
 
 interface WebsiteContextType {
   content: WebsiteContent;
@@ -33,6 +48,18 @@ interface WebsiteContextType {
   setIsLiveEditMode: (val: boolean) => void;
   saveStatus: 'idle' | 'saving' | 'saved';
   
+  // Applications & Vacancies
+  studentApplications: StudentAdmissionApplication[];
+  teachingApplications: TeachingApplication[];
+  teachingVacancies: TeachingJobOpening[];
+  submitStudentAdmission: (data: Omit<StudentAdmissionApplication, 'id' | 'referenceNumber' | 'createdAt' | 'status'>) => string;
+  submitTeachingApplication: (data: Omit<TeachingApplication, 'id' | 'referenceNumber' | 'createdAt' | 'status'>) => string;
+  updateStudentApplicationStatus: (id: string, status: StudentAdmissionApplication['status'], notes?: string) => void;
+  updateTeachingApplicationStatus: (id: string, status: TeachingApplication['status'], notes?: string) => void;
+  deleteStudentApplication: (id: string) => void;
+  deleteTeachingApplication: (id: string) => void;
+  updateTeachingVacancies: (vacancies: TeachingJobOpening[]) => void;
+
   // Update actions for all sections
   updateSchoolInfo: (data: Partial<SchoolInfo>) => void;
   updateFiveImages: (images: SevenLifeImage[]) => void;
@@ -44,6 +71,7 @@ interface WebsiteContextType {
   updateSubjects: (subjects: AcademicSubject[]) => void;
   updateFacilities: (facilities: Facility[]) => void;
   updateAdmissions: (data: Partial<AdmissionSectionData>) => void;
+  updateEmployment: (data: Partial<EmploymentSectionData>) => void;
   updateGallery: (items: GalleryItem[]) => void;
   updateTestimonials: (testimonials: Testimonial[]) => void;
   updateNews: (news: NewsItem[]) => void;
@@ -68,7 +96,6 @@ export const WebsiteProvider: React.FC<{ children: React.ReactNode }> = ({ child
         const saved = localStorage.getItem(STORAGE_KEY);
         if (saved) {
           const parsed = JSON.parse(saved);
-          // Merge with defaults to ensure all required fields exist
           return {
             ...DEFAULT_WEBSITE_CONTENT,
             ...parsed,
@@ -76,6 +103,7 @@ export const WebsiteProvider: React.FC<{ children: React.ReactNode }> = ({ child
             about: { ...DEFAULT_WEBSITE_CONTENT.about, ...parsed.about },
             academicPhilosophy: { ...DEFAULT_WEBSITE_CONTENT.academicPhilosophy, ...parsed.academicPhilosophy },
             admissions: { ...DEFAULT_WEBSITE_CONTENT.admissions, ...parsed.admissions },
+            employment: { ...DEFAULT_EMPLOYMENT_SECTION, ...(parsed.employment || {}) },
             cta: { ...DEFAULT_WEBSITE_CONTENT.cta, ...parsed.cta },
           };
         }
@@ -84,6 +112,45 @@ export const WebsiteProvider: React.FC<{ children: React.ReactNode }> = ({ child
       }
     }
     return DEFAULT_WEBSITE_CONTENT;
+  });
+
+  // Stored Student Admission Applications
+  const [studentApplications, setStudentApplications] = useState<StudentAdmissionApplication[]>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY_STUDENTS);
+        if (saved) return JSON.parse(saved);
+      } catch (e) {
+        console.error('Failed to load student applications', e);
+      }
+    }
+    return SAMPLE_STUDENT_APPLICATIONS;
+  });
+
+  // Stored Teacher Job Applications
+  const [teachingApplications, setTeachingApplications] = useState<TeachingApplication[]>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY_TEACHERS);
+        if (saved) return JSON.parse(saved);
+      } catch (e) {
+        console.error('Failed to load teaching applications', e);
+      }
+    }
+    return SAMPLE_TEACHING_APPLICATIONS;
+  });
+
+  // Teaching Vacancies List
+  const [teachingVacancies, setTeachingVacancies] = useState<TeachingJobOpening[]>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY_VACANCIES);
+        if (saved) return JSON.parse(saved);
+      } catch (e) {
+        console.error('Failed to load teaching vacancies', e);
+      }
+    }
+    return DEFAULT_TEACHING_VACANCIES;
   });
 
   const [isAdmin, setIsAdmin] = useState<boolean>(() => checkIsAdminAuthenticated());
@@ -217,6 +284,138 @@ export const WebsiteProvider: React.FC<{ children: React.ReactNode }> = ({ child
     });
   }, [persistContent]);
 
+  // Update Employment Section Data
+  const updateEmployment = useCallback((data: Partial<EmploymentSectionData>) => {
+    setContent((prev) => {
+      const next: WebsiteContent = {
+        ...prev,
+        employment: { ...(prev.employment || DEFAULT_EMPLOYMENT_SECTION), ...data },
+      };
+      persistContent(next);
+      return next;
+    });
+  }, [persistContent]);
+
+  // Persist Student Applications helper
+  const persistStudentApps = useCallback((apps: StudentAdmissionApplication[]) => {
+    setStudentApplications(apps);
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(STORAGE_KEY_STUDENTS, JSON.stringify(apps));
+      } catch (e) {
+        console.error('Failed to save student applications', e);
+      }
+    }
+  }, []);
+
+  // Persist Teacher Applications helper
+  const persistTeacherApps = useCallback((apps: TeachingApplication[]) => {
+    setTeachingApplications(apps);
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(STORAGE_KEY_TEACHERS, JSON.stringify(apps));
+      } catch (e) {
+        console.error('Failed to save teacher applications', e);
+      }
+    }
+  }, []);
+
+  // Persist Teaching Vacancies helper
+  const persistVacancies = useCallback((vacancies: TeachingJobOpening[]) => {
+    setTeachingVacancies(vacancies);
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(STORAGE_KEY_VACANCIES, JSON.stringify(vacancies));
+      } catch (e) {
+        console.error('Failed to save teaching vacancies', e);
+      }
+    }
+  }, []);
+
+  // Submit Student Admission Application
+  const submitStudentAdmission = useCallback(
+    (data: Omit<StudentAdmissionApplication, 'id' | 'referenceNumber' | 'createdAt' | 'status'>) => {
+      const randomCode = Math.floor(1000 + Math.random() * 9000);
+      const referenceNumber = `DGS-ADM-${new Date().getFullYear()}-${randomCode}`;
+      const newApp: StudentAdmissionApplication = {
+        ...data,
+        id: `stu-${Date.now()}-${randomCode}`,
+        referenceNumber,
+        createdAt: new Date().toISOString(),
+        status: 'Pending Review',
+      };
+      persistStudentApps([newApp, ...studentApplications]);
+      return referenceNumber;
+    },
+    [persistStudentApps, studentApplications]
+  );
+
+  // Submit Teaching Job Application
+  const submitTeachingApplication = useCallback(
+    (data: Omit<TeachingApplication, 'id' | 'referenceNumber' | 'createdAt' | 'status'>) => {
+      const randomCode = Math.floor(1000 + Math.random() * 9000);
+      const referenceNumber = `DGS-TEA-${new Date().getFullYear()}-${randomCode}`;
+      const newApp: TeachingApplication = {
+        ...data,
+        id: `tea-${Date.now()}-${randomCode}`,
+        referenceNumber,
+        createdAt: new Date().toISOString(),
+        status: 'Pending',
+      };
+      persistTeacherApps([newApp, ...teachingApplications]);
+      return referenceNumber;
+    },
+    [persistTeacherApps, teachingApplications]
+  );
+
+  // Update Student Application Status & Notes
+  const updateStudentApplicationStatus = useCallback(
+    (id: string, status: StudentAdmissionApplication['status'], notes?: string) => {
+      const updated = studentApplications.map((app) =>
+        app.id === id ? { ...app, status, adminNotes: notes !== undefined ? notes : app.adminNotes } : app
+      );
+      persistStudentApps(updated);
+    },
+    [persistStudentApps, studentApplications]
+  );
+
+  // Update Teaching Application Status & Notes
+  const updateTeachingApplicationStatus = useCallback(
+    (id: string, status: TeachingApplication['status'], notes?: string) => {
+      const updated = teachingApplications.map((app) =>
+        app.id === id ? { ...app, status, adminNotes: notes !== undefined ? notes : app.adminNotes } : app
+      );
+      persistTeacherApps(updated);
+    },
+    [persistTeacherApps, teachingApplications]
+  );
+
+  // Delete Student Application
+  const deleteStudentApplication = useCallback(
+    (id: string) => {
+      const filtered = studentApplications.filter((app) => app.id !== id);
+      persistStudentApps(filtered);
+    },
+    [persistStudentApps, studentApplications]
+  );
+
+  // Delete Teaching Application
+  const deleteTeachingApplication = useCallback(
+    (id: string) => {
+      const filtered = teachingApplications.filter((app) => app.id !== id);
+      persistTeacherApps(filtered);
+    },
+    [persistTeacherApps, teachingApplications]
+  );
+
+  // Update Vacancies list
+  const updateTeachingVacancies = useCallback(
+    (vacancies: TeachingJobOpening[]) => {
+      persistVacancies(vacancies);
+    },
+    [persistVacancies]
+  );
+
   // Update Gallery
   const updateGallery = useCallback((items: GalleryItem[]) => {
     setContent((prev) => {
@@ -317,6 +516,16 @@ export const WebsiteProvider: React.FC<{ children: React.ReactNode }> = ({ child
         isLiveEditMode,
         setIsLiveEditMode,
         saveStatus,
+        studentApplications,
+        teachingApplications,
+        teachingVacancies,
+        submitStudentAdmission,
+        submitTeachingApplication,
+        updateStudentApplicationStatus,
+        updateTeachingApplicationStatus,
+        deleteStudentApplication,
+        deleteTeachingApplication,
+        updateTeachingVacancies,
         updateSchoolInfo,
         updateFiveImages,
         updateSingleFiveImage,
@@ -327,6 +536,7 @@ export const WebsiteProvider: React.FC<{ children: React.ReactNode }> = ({ child
         updateSubjects,
         updateFacilities,
         updateAdmissions,
+        updateEmployment,
         updateGallery,
         updateTestimonials,
         updateNews,

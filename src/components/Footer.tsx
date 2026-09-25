@@ -90,6 +90,18 @@ export default function Footer({ onNavClick }: FooterProps) {
               </li>
               <li>
                 <a
+                  href="#employment"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavClick('#employment');
+                  }}
+                  className="hover:text-amber-400 transition-colors"
+                >
+                  Careers / Employment
+                </a>
+              </li>
+              <li>
+                <a
                   href="#gallery"
                   onClick={(e) => {
                     e.preventDefault();

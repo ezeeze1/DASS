@@ -22,8 +22,12 @@ import {
   Check,
   AlertCircle,
   Sparkles,
+  Briefcase,
+  Users,
 } from 'lucide-react';
 import { useWebsiteContent } from '../../context/WebsiteContext';
+import AdminStudentApplications from './AdminStudentApplications';
+import AdminTeacherApplications from './AdminTeacherApplications';
 import {
   SevenLifeImage,
   SchoolLevel,
@@ -42,6 +46,8 @@ interface AdminDashboardProps {
 
 type TabType =
   | 'info'
+  | 'studentApplications'
+  | 'teacherApplications'
   | 'fiveImages'
   | 'about'
   | 'whyChooseUs'
@@ -60,6 +66,8 @@ export default function AdminDashboard({ onReturnToWebsite, defaultTab = 'info' 
     content,
     saveStatus,
     adminEmail,
+    studentApplications,
+    teachingApplications,
     logout,
     resetToDefaults,
     updateSchoolInfo,
@@ -196,8 +204,56 @@ export default function AdminDashboard({ onReturnToWebsite, defaultTab = 'info' 
       <div className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Navigation Sidebar */}
         <nav className="lg:col-span-3 space-y-1">
-          <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3 py-1.5">
-            Website Sections
+          <div className="text-[11px] font-bold uppercase tracking-wider text-amber-400 px-3 py-1.5 flex items-center justify-between">
+            <span>Online Inquiries</span>
+            <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-500/10 px-1.5 py-0.2 rounded border border-emerald-500/20">Active</span>
+          </div>
+
+          {[
+            {
+              id: 'studentApplications',
+              label: 'Student Admissions',
+              icon: FileCheck,
+              count: studentApplications.length,
+              badgeColor: 'bg-emerald-500 text-slate-950',
+            },
+            {
+              id: 'teacherApplications',
+              label: 'Teacher Applications',
+              icon: Briefcase,
+              count: teachingApplications.length,
+              badgeColor: 'bg-amber-500 text-slate-950',
+            },
+          ].map((item) => {
+            const Icon = item.icon;
+            const isActive = activeTab === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => setActiveTab(item.id as TabType)}
+                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
+                  isActive
+                    ? 'bg-amber-500 text-slate-950 font-bold shadow-md shadow-amber-500/20'
+                    : 'text-slate-200 bg-slate-800/80 hover:bg-slate-800 hover:text-white border border-slate-700/60'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-slate-950' : 'text-amber-400'}`} />
+                  <span>{item.label}</span>
+                </div>
+                <span
+                  className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${
+                    isActive ? 'bg-slate-950 text-amber-400' : item.badgeColor
+                  }`}
+                >
+                  {item.count}
+                </span>
+              </button>
+            );
+          })}
+
+          <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3 pt-3 pb-1.5">
+            Website Content
           </div>
 
           {[
@@ -208,7 +264,7 @@ export default function AdminDashboard({ onReturnToWebsite, defaultTab = 'info' 
             { id: 'levels', label: 'School Levels (3)', icon: GraduationCap },
             { id: 'academics', label: 'Academics & Subjects', icon: Sparkles },
             { id: 'facilities', label: 'Facilities & Campus', icon: Building2 },
-            { id: 'admissions', label: 'Admissions Section', icon: FileCheck },
+            { id: 'admissions', label: 'Admissions Section Text', icon: FileCheck },
             { id: 'gallery', label: 'Photo Gallery', icon: ImageIcon },
             { id: 'testimonials', label: 'Parent Testimonials', icon: MessageSquareQuote },
             { id: 'news', label: 'News & Bulletins', icon: Newspaper },
@@ -253,6 +309,16 @@ export default function AdminDashboard({ onReturnToWebsite, defaultTab = 'info' 
 
         {/* Right Content Editor Area */}
         <main className="lg:col-span-9 bg-slate-800/80 border border-slate-700/80 rounded-2xl p-6 sm:p-8 shadow-xl">
+          {/* TAB: STUDENT APPLICATIONS */}
+          {activeTab === 'studentApplications' && (
+            <AdminStudentApplications onToast={triggerToast} />
+          )}
+
+          {/* TAB: TEACHER APPLICATIONS */}
+          {activeTab === 'teacherApplications' && (
+            <AdminTeacherApplications onToast={triggerToast} />
+          )}
+
           {/* TAB 1: SCHOOL INFO & CONTACTS */}
           {activeTab === 'info' && (
             <div className="space-y-6">

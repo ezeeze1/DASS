@@ -10,6 +10,7 @@ import {
   TESTIMONIALS_DATA,
   NEWS_ANNOUNCEMENTS,
   ADMISSION_STEPS,
+  DEFAULT_EMPLOYMENT_SECTION,
 } from './schoolData';
 
 export const DEFAULT_WEBSITE_CONTENT: WebsiteContent = {
@@ -54,6 +55,7 @@ export const DEFAULT_WEBSITE_CONTENT: WebsiteContent = {
       'We welcome prospective families to experience our campus, consult with our educational coordinators, and register their wards for Creche, Primary, and Secondary sections.',
     steps: ADMISSION_STEPS,
   },
+  employment: DEFAULT_EMPLOYMENT_SECTION,
   gallery: GALLERY_ITEMS,
   testimonials: TESTIMONIALS_DATA,
   news: NEWS_ANNOUNCEMENTS,

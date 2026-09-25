@@ -29,6 +29,7 @@ export default function Header({ onOpenApplyModal, activeSection }: HeaderProps)
     { label: 'OUR SCHOOLS', href: '#schools', id: 'schools' },
     { label: 'FACILITIES', href: '#facilities', id: 'facilities' },
     { label: 'ADMISSIONS', href: '#admissions', id: 'admissions' },
+    { label: 'EMPLOYMENT', href: '#employment', id: 'employment' },
     { label: 'GALLERY', href: '#gallery', id: 'gallery' },
     { label: 'CONTACT', href: '#contact', id: 'contact' },
   ];

@@ -21,7 +21,7 @@ interface AdmissionModalProps {
 }
 
 export default function AdmissionModal({ isOpen, onClose }: AdmissionModalProps) {
-  const { content } = useWebsiteContent();
+  const { content, submitStudentAdmission } = useWebsiteContent();
   const SCHOOL_INFO = content.schoolInfo;
   const [formData, setFormData] = useState<AdmissionFormData>({
     studentFullName: '',
@@ -46,11 +46,25 @@ export default function AdmissionModal({ isOpen, onClose }: AdmissionModalProps)
     setIsSubmitting(true);
 
     setTimeout(() => {
-      const randomNum = Math.floor(1000 + Math.random() * 9000);
-      const refCode = `DGS-${new Date().getFullYear()}-${randomNum}`;
+      const refCode = submitStudentAdmission({
+        studentFullName: formData.studentFullName,
+        dateOfBirth: formData.dateOfBirth,
+        gender: formData.gender as 'Male' | 'Female',
+        levelApplying: formData.levelApplying,
+        entryTerm: 'First Term (Upcoming Session)',
+        previousSchool: formData.previousSchool || 'N/A',
+        lastClassCompleted: 'N/A',
+        parentFullName: formData.parentFullName,
+        parentRelationship: 'Parent / Guardian',
+        parentPhone: formData.parentPhone,
+        parentWhatsapp: formData.parentPhone,
+        parentEmail: formData.parentEmail,
+        parentAddress: formData.parentAddress,
+        academicInterests: formData.notes,
+      });
       setIsSubmitting(false);
       setSubmittedCode(refCode);
-    }, 700);
+    }, 600);
   };
 
   const resetForm = () => {

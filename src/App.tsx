@@ -8,6 +8,7 @@ import OurSchools from './components/OurSchools';
 import AcademicsSection from './components/AcademicsSection';
 import FacilitiesSection from './components/FacilitiesSection';
 import AdmissionsSection from './components/AdmissionsSection';
+import EmploymentSection from './components/EmploymentSection';
 import GallerySection from './components/GallerySection';
 import TestimonialsSection from './components/TestimonialsSection';
 import NewsSection from './components/NewsSection';
@@ -47,6 +48,11 @@ function MainSite() {
       if (hash.startsWith('#admin/')) {
         const sub = hash.replace('#admin/', '');
         setSelectedAdminTab(sub);
+      } else if (hash === '#employment' || hash === '#careers' || hash === '#jobs') {
+        setTimeout(() => {
+          const el = document.getElementById('employment');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
       }
     };
 
@@ -70,6 +76,7 @@ function MainSite() {
         'academics',
         'facilities',
         'admissions',
+        'employment',
         'gallery',
         'testimonials',
         'news',
@@ -268,6 +275,22 @@ function MainSite() {
           )}
           <AdmissionsSection
             onOpenApplyModal={() => setIsApplyModalOpen(true)}
+            onContactClick={() => scrollToSection('contact')}
+          />
+        </div>
+
+        {/* Teaching Careers & Employment Section */}
+        <div className="relative group/employment">
+          {isAdmin && isLiveEditMode && (
+            <button
+              onClick={() => navigateToAdmin('teacherApplications')}
+              className="absolute top-4 right-4 z-30 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 text-navy-950 font-bold text-xs shadow-xl hover:bg-amber-400 transition-all border border-navy-950/20"
+            >
+              <Edit3 className="w-3.5 h-3.5" />
+              <span>Manage Teaching Applications & Vacancies</span>
+            </button>
+          )}
+          <EmploymentSection
             onContactClick={() => scrollToSection('contact')}
           />
         </div>
