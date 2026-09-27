@@ -35,7 +35,7 @@ import {
   getAdminSessionInfo,
 } from '../utils/auth';
 
-const STORAGE_KEY = 'divine_school_website_content_v1';
+const STORAGE_KEY = 'divine_school_website_content_v2';
 const STORAGE_KEY_STUDENTS = 'divine_school_student_apps_v1';
 const STORAGE_KEY_TEACHERS = 'divine_school_teacher_apps_v1';
 const STORAGE_KEY_VACANCIES = 'divine_school_teaching_vacancies_v1';
@@ -93,9 +93,32 @@ export const WebsiteProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [content, setContent] = useState<WebsiteContent>(() => {
     if (typeof window !== 'undefined') {
       try {
-        const saved = localStorage.getItem(STORAGE_KEY);
+        const saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('divine_school_website_content_v1');
         if (saved) {
           const parsed = JSON.parse(saved);
+          // Ensure new home page image and modern class images are reflected if previously cached
+          if (Array.isArray(parsed.fiveImages)) {
+            parsed.fiveImages = parsed.fiveImages.map((img: any) => {
+              if (img.id === 1 && (img.src?.includes('IMG-7794.jpg') || !img.src)) {
+                return { ...img, src: 'https://i.ibb.co/4RFCgmPR/IMG-20260925-114810-761.jpg' };
+              }
+              if (img.id === 2 && (img.src?.includes('1580582932707-520aed937b7b') || img.category?.includes('Modern Class'))) {
+                return { ...img, src: 'https://i.ibb.co/7Nkt8scw/IMG-20260925-114822-529.jpg' };
+              }
+              return img;
+            });
+          }
+          if (Array.isArray(parsed.facilities)) {
+            parsed.facilities = parsed.facilities.map((fac: any) => {
+              if (fac.id === 'modern-classrooms') {
+                return { ...fac, image: 'https://i.ibb.co/7Nkt8scw/IMG-20260925-114822-529.jpg' };
+              }
+              if (fac.id === 'school-environment' && fac.image?.includes('IMG-7794.jpg')) {
+                return { ...fac, image: 'https://i.ibb.co/4RFCgmPR/IMG-20260925-114810-761.jpg' };
+              }
+              return fac;
+            });
+          }
           return {
             ...DEFAULT_WEBSITE_CONTENT,
             ...parsed,

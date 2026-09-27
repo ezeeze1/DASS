@@ -109,15 +109,7 @@ export default function Hero({ onExploreClick, onAdmissionsClick }: HeroProps) {
           WELCOME TO <span className="text-white underline decoration-white/60 decoration-4 underline-offset-8">{schoolInfo.name}</span>
         </h1>
 
-        {/* Tagline & Supporting Narrative with solid black text in elegant high-contrast panel */}
-        <div className="mt-8 max-w-3xl bg-white/95 backdrop-blur-md rounded-2xl p-6 sm:p-7 shadow-2xl border border-white/80">
-          <p className="font-serif italic text-lg sm:text-2xl text-black font-bold">
-            "{schoolInfo.tagline}"
-          </p>
-          <p className="text-black text-base sm:text-lg font-medium mt-3 leading-relaxed text-balance">
-            {schoolInfo.heroSupportingText}
-          </p>
-        </div>
+        {/* Tagline and its background hidden as requested */}
 
         {/* Action Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
@@ -178,10 +170,10 @@ export default function Hero({ onExploreClick, onAdmissionsClick }: HeroProps) {
       <button
         onClick={onExploreClick}
         aria-label="Scroll down to explore school"
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-black bg-white/90 px-3 py-1 rounded-full shadow-md hover:bg-white transition-colors focus:outline-none"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 text-white hover:text-amber-400 transition-colors focus:outline-none"
       >
-        <span className="text-[10px] uppercase tracking-widest font-bold text-black">Scroll</span>
-        <ChevronDown className="w-4 h-4 animate-bounce text-black" />
+        <span className="text-[10px] uppercase tracking-widest font-semibold text-white/80">Scroll</span>
+        <ChevronDown className="w-4 h-4 animate-bounce text-white/80" />
       </button>
     </section>
   );
