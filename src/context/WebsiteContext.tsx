@@ -105,6 +105,9 @@ export const WebsiteProvider: React.FC<{ children: React.ReactNode }> = ({ child
               if (img.id === 2 && (img.src?.includes('1580582932707-520aed937b7b') || img.category?.includes('Modern Class'))) {
                 return { ...img, src: 'https://i.ibb.co/7Nkt8scw/IMG-20260925-114822-529.jpg' };
               }
+              if (img.id === 3 && (img.src?.includes('1509062522246') || img.title?.includes('Collaboration') || img.title?.includes('Students Learning'))) {
+                return { ...img, src: 'https://i.ibb.co/TxTBtqhK/IMG-20260928-123950-575.jpg' };
+              }
               return img;
             });
           }

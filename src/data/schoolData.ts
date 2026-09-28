@@ -59,7 +59,7 @@ export const HOMEPAGE_FIVE_IMAGES: SevenLifeImage[] = [
     category: '3. Academic Engagement',
     caption: 'Encouraging peer problem-solving, reading culture, teamwork, and deep conceptual understanding in every subject.',
     alt: 'African students actively participating and collaborating in class',
-    src: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1600&q=85',
+    src: 'https://i.ibb.co/TxTBtqhK/IMG-20260928-123950-575.jpg',
   },
   {
     id: 4,
@@ -112,7 +112,7 @@ export const SEVEN_LIFE_IMAGES: SevenLifeImage[] = [
     category: '3. Students Learning',
     caption: 'Encouraging peer problem-solving, reading culture, and deep conceptual understanding.',
     alt: 'African students actively participating and collaborating in class',
-    src: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80',
+    src: 'https://i.ibb.co/TxTBtqhK/IMG-20260928-123950-575.jpg',
   },
   {
     id: 4,
