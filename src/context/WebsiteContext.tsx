@@ -119,6 +119,14 @@ export const WebsiteProvider: React.FC<{ children: React.ReactNode }> = ({ child
               return fac;
             });
           }
+          if (Array.isArray(parsed.schoolLevels)) {
+            parsed.schoolLevels = parsed.schoolLevels.map((lvl: any) => {
+              if (lvl.id === 'secondary-school' || lvl.ageRange?.includes('11') || lvl.ageRange?.includes('JSS')) {
+                return { ...lvl, image: 'https://i.ibb.co/rr4n3WX/IMG-20260928-123917-580.jpg' };
+              }
+              return lvl;
+            });
+          }
           return {
             ...DEFAULT_WEBSITE_CONTENT,
             ...parsed,

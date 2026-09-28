@@ -3,12 +3,10 @@ import { useWebsiteContent } from '../context/WebsiteContext';
 import StudentAdmissionForm from './StudentAdmissionForm';
 
 interface AdmissionsSectionProps {
-  onOpenApplyModal: () => void;
   onContactClick: () => void;
 }
 
 export default function AdmissionsSection({
-  onOpenApplyModal,
   onContactClick,
 }: AdmissionsSectionProps) {
   const { content } = useWebsiteContent();
@@ -58,14 +56,6 @@ export default function AdmissionsSection({
                 <ClipboardCheck className="w-4 h-4" />
                 <span>FILL APPLICATION FORM BELOW</span>
                 <ArrowDown className="w-3.5 h-3.5" />
-              </button>
-
-              <button
-                onClick={onOpenApplyModal}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-slate-100 hover:bg-slate-200 text-navy-950 font-bold text-xs uppercase tracking-wider rounded-xl border border-slate-300 shadow-sm active:translate-y-0.5 transition-all duration-200 cursor-pointer"
-              >
-                <FileText className="w-4 h-4 text-amber-600" />
-                <span>POPUP APPLICATION MODAL</span>
               </button>
 
               <button

@@ -4,11 +4,11 @@ import Logo from './Logo';
 import { useWebsiteContent } from '../context/WebsiteContext';
 
 interface HeaderProps {
-  onOpenApplyModal: () => void;
+  onApplyClick: () => void;
   activeSection: string;
 }
 
-export default function Header({ onOpenApplyModal, activeSection }: HeaderProps) {
+export default function Header({ onApplyClick, activeSection }: HeaderProps) {
   const { content } = useWebsiteContent();
   const SCHOOL_INFO = content.schoolInfo;
   const [isScrolled, setIsScrolled] = useState(false);
@@ -98,7 +98,7 @@ export default function Header({ onOpenApplyModal, activeSection }: HeaderProps)
           {/* Right Action Button (Desktop) */}
           <div className="hidden md:flex items-center gap-3">
             <button
-              onClick={onOpenApplyModal}
+              onClick={onApplyClick}
               className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold text-xs uppercase tracking-wider rounded shadow-md hover:shadow-amber-500/20 active:translate-y-0.5 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
             >
               <span className="text-white">APPLY FOR ADMISSION</span>
@@ -109,7 +109,7 @@ export default function Header({ onOpenApplyModal, activeSection }: HeaderProps)
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 xl:hidden">
             <button
-              onClick={onOpenApplyModal}
+              onClick={onApplyClick}
               className="hidden sm:inline-flex md:hidden items-center px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs uppercase tracking-wider rounded"
             >
               <span className="text-white">APPLY</span>
@@ -156,7 +156,7 @@ export default function Header({ onOpenApplyModal, activeSection }: HeaderProps)
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    onOpenApplyModal();
+                    onApplyClick();
                   }}
                   className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm uppercase tracking-wider rounded shadow-md"
                 >

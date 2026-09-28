@@ -47,7 +47,6 @@ export default function ImageWithFallback({
           alt={alt}
           loading={loading}
           referrerPolicy="no-referrer"
-          crossOrigin="anonymous"
           onLoad={() => setIsLoaded(true)}
           onError={() => setHasError(true)}
           className={`${className} transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}

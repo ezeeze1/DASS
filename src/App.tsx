@@ -15,7 +15,6 @@ import NewsSection from './components/NewsSection';
 import CallToAction from './components/CallToAction';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
-import AdmissionModal from './components/AdmissionModal';
 import LightboxModal from './components/LightboxModal';
 import WhatsAppButton from './components/WhatsAppButton';
 import { WebsiteProvider, useWebsiteContent } from './context/WebsiteContext';
@@ -30,7 +29,6 @@ function MainSite() {
     typeof window !== 'undefined' ? window.location.hash : ''
   );
   const [selectedAdminTab, setSelectedAdminTab] = useState<any>('info');
-  const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
   const [selectedLightboxImage, setSelectedLightboxImage] = useState<{
     title: string;
     src: string;
@@ -145,7 +143,7 @@ function MainSite() {
 
       {/* Sticky Header with Navigation */}
       <Header
-        onOpenApplyModal={() => setIsApplyModalOpen(true)}
+        onApplyClick={() => scrollToSection('admission-form')}
         activeSection={activeSection}
       />
 
@@ -163,7 +161,7 @@ function MainSite() {
           )}
           <Hero
             onExploreClick={() => scrollToSection('life-showcase')}
-            onAdmissionsClick={() => scrollToSection('admissions')}
+            onAdmissionsClick={() => scrollToSection('admission-form')}
           />
         </div>
 
@@ -228,7 +226,7 @@ function MainSite() {
             </button>
           )}
           <OurSchools
-            onApplyForAdmission={() => setIsApplyModalOpen(true)}
+            onApplyForAdmission={() => scrollToSection('admission-form')}
           />
         </div>
 
@@ -274,7 +272,6 @@ function MainSite() {
             </button>
           )}
           <AdmissionsSection
-            onOpenApplyModal={() => setIsApplyModalOpen(true)}
             onContactClick={() => scrollToSection('contact')}
           />
         </div>
@@ -373,12 +370,6 @@ function MainSite() {
 
       {/* Multi-Column Comprehensive Footer */}
       <Footer onNavClick={(href) => scrollToSection(href)} />
-
-      {/* Interactive Admission Inquiry & Application Modal */}
-      <AdmissionModal
-        isOpen={isApplyModalOpen}
-        onClose={() => setIsApplyModalOpen(false)}
-      />
 
       {/* Full-screen Photo Lightbox Modal */}
       <LightboxModal

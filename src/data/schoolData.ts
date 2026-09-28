@@ -228,7 +228,7 @@ export const SCHOOL_LEVELS: SchoolLevel[] = [
       'Debating society, press club, STEM and robotics clubs',
       'Comprehensive career counseling and mentorship',
     ],
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',
+    image: 'https://i.ibb.co/rr4n3WX/IMG-20260928-123917-580.jpg',
   },
 ];
 
