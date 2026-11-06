@@ -64,6 +64,55 @@
         "slogan": "Building Excellence, Character and Leadership"
       }
     </script>
+
+    <!-- Proactively remove any injected Netlify badges, text, logos, or drawers -->
+    <script>
+      (function() {
+        function purgeNetlifyElements() {
+          var selectors = [
+            '#netlify-badge',
+            '.netlify-badge',
+            '#netlify-drawer',
+            '[data-netlify-drawer]',
+            '[data-netlify-badge]',
+            'iframe[src*="netlify"]',
+            'iframe[id*="netlify"]',
+            'a[href*="netlify.com"]',
+            'a[href*="netlify.app"]',
+            'img[src*="netlify"]',
+            'svg[class*="netlify"]',
+            '[class*="netlify-badge"]',
+            '[id*="netlify-badge"]',
+            '[class*="netlify-drawer"]',
+            '[id*="netlify-drawer"]',
+            '.netlify-identity-menu',
+            '.netlify-identity-widget'
+          ];
+          selectors.forEach(function(sel) {
+            try {
+              var nodes = document.querySelectorAll(sel);
+              for (var i = 0; i < nodes.length; i++) {
+                var node = nodes[i];
+                if (node && node.parentNode) {
+                  node.parentNode.removeChild(node);
+                }
+              }
+            } catch (e) {}
+          });
+        }
+        if (typeof window !== 'undefined') {
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', purgeNetlifyElements);
+          } else {
+            purgeNetlifyElements();
+          }
+          if (typeof MutationObserver !== 'undefined') {
+            var observer = new MutationObserver(purgeNetlifyElements);
+            observer.observe(document.documentElement, { childList: true, subtree: true });
+          }
+        }
+      })();
+    </script>
   </head>
   <body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-amber-500/20 selection:text-amber-950">
     <div id="root"></div>

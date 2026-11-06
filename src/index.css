@@ -59,3 +59,35 @@ html {
   color: #ffffff !important;
 }
 
+/* Suppress all Netlify branding, badges, text, logos, drawers, and links */
+#netlify-badge,
+.netlify-badge,
+#netlify-drawer,
+[data-netlify-drawer],
+[data-netlify-badge],
+iframe[src*="netlify"],
+iframe[id*="netlify"],
+a[href*="netlify.com"],
+a[href*="netlify.app"],
+img[src*="netlify"],
+svg[class*="netlify"],
+[class*="netlify-badge"],
+[id*="netlify-badge"],
+[class*="netlify-drawer"],
+[id*="netlify-drawer"],
+.netlify-identity-menu,
+.netlify-identity-widget,
+[data-testid*="netlify"],
+[aria-label*="Netlify" i] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  z-index: -9999 !important;
+}
+
